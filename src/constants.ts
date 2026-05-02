@@ -6,7 +6,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Turn Off TV Week",
     description: "Poster created for Adbusters' Turn Off TV Week.",
     descriptionJp: "アボバスターズの『Turn Off TV Week』のために制作されたポスター。",
-    image: "https://picsum.photos/seed/tvweek/800/600",
+    image: "/images/tv-week/800/600",
     downloadLink: "#"
   },
   {
@@ -14,7 +14,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Manic-Art Promo",
     description: "Promotional artwork for Manic-Art.",
     descriptionJp: "Manic-Artのプロモーション用アートワーク。",
-    image: "https://picsum.photos/seed/manicart/800/600",
+    image: "/images/manic-art/800/600",
     downloadLink: "#"
   },
   {
@@ -22,7 +22,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Coloring Book Pages",
     description: "A set of experimental coloring pages.",
     descriptionJp: "実験的なぬりえページのセット。",
-    image: "https://picsum.photos/seed/coloring/800/600",
+    image: "/images/coloring/800/600",
     downloadLink: "#"
   },
   {
@@ -30,7 +30,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Outkast Tribute",
     description: "Artwork inspired by Outkast.",
     descriptionJp: "Outkastにインスパイアされたアートワーク。",
-    image: "https://picsum.photos/seed/outkast/800/600",
+    image: "/images/outkast/800/600",
     downloadLink: "#"
   }
 ];
