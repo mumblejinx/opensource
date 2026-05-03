@@ -4,6 +4,7 @@
  */
 
 import { motion } from 'framer-motion';
+import Marquee from './components/Marquee';
 import { ARTWORKS } from './constants';
 import ArtCard from './components/ArtCard';
 import { Palette, ExternalLink } from 'lucide-react';
@@ -84,6 +85,9 @@ function HomePage() {
         </div>
       </header>
 
+      <Marquee />
+
+      
       {/* Grid Container */}
       <main className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
