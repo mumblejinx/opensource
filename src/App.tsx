@@ -4,6 +4,7 @@
  */
 
 import { motion } from 'framer-motion';
+import GlitchText from './components/GlitchText';
 import Marquee from './components/Marquee';
 import { ARTWORKS } from './constants';
 import ArtCard from './components/ArtCard';
@@ -22,7 +23,7 @@ function HomePage() {
             <div className="w-10 h-10 bg-[#8bc34a] flex items-center justify-center font-display font-black text-black">
               OSA
             </div>
-            <span className="font-display font-bold tracking-tight text-xl hidden sm:inline">
+            <span className="font-display font-bold tracking-tight text-sm sm:text-xl inline">
               OPEN SOURCE <span className="text-[#8bc34a]">ART</span>
             </span>
           </div>
@@ -62,7 +63,7 @@ function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-6xl md:text-8xl font-display font-black tracking-tighter leading-[0.85] mb-8 uppercase"
             >
-              FREE ART <br /> FOR <span className="text-[#8bc34a]">EVERYONE</span>
+              FREE ART <br /> FOR <br /> <GlitchText text="EVERYONE" />
             </motion.h1>
           </div>
 
