@@ -4,12 +4,9 @@ export const ARTWORKS = [
   {
     id: 'tv-week',
     title: "Turn Off TV Week",
-
     description: "...",
     descriptionJp: "...",
-
-    image: `${BASE}artworks/tv-week/preview.jpg`,
-
-    page: `${BASE}artworks/tv-week/tv-week.html`
+    image: `${BASE}tv-week/tv-week.jpg`,
+    downloadLink: `${BASE}tv-week/tv-week.html`
   }
 ];

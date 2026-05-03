@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ARTWORKS } from './constants';
 import ArtCard from './components/ArtCard';
 import { Palette, Github, Mail, ExternalLink } from 'lucide-react';
