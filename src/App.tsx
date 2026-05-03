@@ -22,7 +22,7 @@ function HomePage() {
             <div className="w-10 h-10 bg-[#8bc34a] flex items-center justify-center font-display font-black text-black">
               OSA
             </div>
-            <span className="font-display font-bold tracking-tight text-xl hidden sm:inline">
+            <span className="font-display font-bold tracking-tight text-xl inline">
               OPEN SOURCE <span className="text-[#8bc34a]">ART</span>
             </span>
           </div>
