@@ -64,11 +64,12 @@ export default function ProjectPage() {
       <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center gap-6">
         <p className="text-gray-400 text-xl">Project not found.</p>
         <Link
-          to="/opensource/"
-          className="flex items-center gap-2 text-[#8bc34a] hover:text-white transition-colors"
-        >
-          <ArrowLeft size={16} /> Back to Gallery
-        </Link>
+  to="/opensource/"
+  className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
+>
+  <ArrowLeft size={14} /> RETURN TO GALLERY
+</Link>
+        
       </div>
     );
   }
