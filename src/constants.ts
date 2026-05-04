@@ -2,9 +2,14 @@ const BASE = import.meta.env.BASE_URL;
 
 export interface ArtworkFile {
   label: string;
-  filename: string;
-  type: 'pdf' | 'jpg' | 'zip' | 'png';
+  pdfFilename: string;
+  pngFilename: string;
   preview?: string;
+}
+
+export interface ArtworkZip {
+  label: string;
+  filename: string;
 }
 
 export interface Artwork {
@@ -14,6 +19,7 @@ export interface Artwork {
   descriptionJp: string;
   image: string;
   files: ArtworkFile[];
+  zips: ArtworkZip[];
 }
 
 export const ARTWORKS: Artwork[] = [
@@ -26,39 +32,38 @@ export const ARTWORKS: Artwork[] = [
     files: [
       {
         label: "Standard Print",
-        filename: "tv-week.pdf",
-        type: "pdf",
+        pdfFilename: "tv-week.pdf",
+        pngFilename: "tv-week.png",
         preview: `${BASE}tv-week/tv-week.jpg`
       },
       {
         label: "Sticker Sheet",
-        filename: "tv-week-sheet.pdf",
-        type: "pdf",
+        pdfFilename: "tv-week-sheet.pdf",
+        pngFilename: "tv-week-sheet.png",
         preview: `${BASE}tv-week/tv-week-sheet.jpg`
       },
       {
         label: "Clean Version",
-        filename: "tv-clean.pdf",
-        type: "pdf",
+        pdfFilename: "tv-clean.pdf",
+        pngFilename: "tv-clean.png",
         preview: `${BASE}tv-week/tv-clean.jpg`
       },
       {
         label: "Color Version",
-        filename: "tv_color.pdf",
-        type: "pdf",
+        pdfFilename: "tv_color.pdf",
+        pngFilename: "tv_color.png",
         preview: `${BASE}tv-week/tv_color.jpg`
       },
       {
         label: "Color Sticker Sheet",
-        filename: "tv_color-sheet.pdf",
-        type: "pdf",
+        pdfFilename: "tv_color-sheet.pdf",
+        pngFilename: "tv_color-sheet.png",
         preview: `${BASE}tv-week/tv_color-sheet.jpg`
-      },
-      {
-        label: "All Files (ZIP)",
-        filename: "tv-week.zip",
-        type: "zip"
       }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "tv-week-pdfs.zip" },
+      { label: "PNG Bundle", filename: "tv-week-pngs.zip" }
     ]
   },
   {
@@ -70,21 +75,20 @@ export const ARTWORKS: Artwork[] = [
     files: [
       {
         label: "Standard Print",
-        filename: "manic-art.pdf",
-        type: "pdf",
+        pdfFilename: "manic-art.pdf",
+        pngFilename: "manic-art.png",
         preview: `${BASE}manic-art/manic-art.jpg`
       },
       {
         label: "Sticker Sheet",
-        filename: "manic-art-sheet.pdf",
-        type: "pdf",
+        pdfFilename: "manic-art-sheet.pdf",
+        pngFilename: "manic-art-sheet.png",
         preview: `${BASE}manic-art/manic-art-sheet.jpg`
-      },
-      {
-        label: "All Files (ZIP)",
-        filename: "manic-art.zip",
-        type: "zip"
       }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "manic-art-pdfs.zip" },
+      { label: "PNG Bundle", filename: "manic-art-pngs.zip" }
     ]
   },
   {
@@ -96,45 +100,44 @@ export const ARTWORKS: Artwork[] = [
     files: [
       {
         label: "Standard Print",
-        filename: "outkast.pdf",
-        type: "pdf",
+        pdfFilename: "outkast.pdf",
+        pngFilename: "outkast.png",
         preview: `${BASE}outkast/outkast.jpg`
       },
       {
         label: "Color Version",
-        filename: "outkast-color.pdf",
-        type: "pdf",
+        pdfFilename: "outkast-color.pdf",
+        pngFilename: "outkast-color.png",
         preview: `${BASE}outkast/outkast-color.jpg`
       },
       {
         label: "Mumble Dark Print",
-        filename: "outkast-mumbledark.pdf",
-        type: "pdf",
+        pdfFilename: "outkast-mumbledark.pdf",
+        pngFilename: "outkast-mumbledark.png",
         preview: `${BASE}outkast/outkast-mumbledark.jpg`
       },
       {
         label: "Mumble Dark Sheet",
-        filename: "outkast-mumbledark-sheet.pdf",
-        type: "pdf",
+        pdfFilename: "outkast-mumbledark-sheet.pdf",
+        pngFilename: "outkast-mumbledark-sheet.png",
         preview: `${BASE}outkast/outkast-mumbledark-sheet.jpg`
       },
       {
         label: "Mumble Light Print",
-        filename: "outkast-mumblelight.pdf",
-        type: "pdf",
+        pdfFilename: "outkast-mumblelight.pdf",
+        pngFilename: "outkast-mumblelight.png",
         preview: `${BASE}outkast/outkast-mumblelight.jpg`
       },
       {
         label: "Mumble Light Sheet",
-        filename: "outkast-mumblelight-sheet.pdf",
-        type: "pdf",
+        pdfFilename: "outkast-mumblelight-sheet.pdf",
+        pngFilename: "outkast-mumblelight-sheet.png",
         preview: `${BASE}outkast/outkast-mumblelight-sheet.jpg`
-      },
-      {
-        label: "All Files (ZIP)",
-        filename: "outkast.zip",
-        type: "zip"
       }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "outkast-pdfs.zip" },
+      { label: "PNG Bundle", filename: "outkast-pngs.zip" }
     ]
   },
   {
@@ -146,93 +149,92 @@ export const ARTWORKS: Artwork[] = [
     files: [
       {
         label: "Page 1",
-        filename: "coloring-1.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-1.pdf",
+        pngFilename: "coloring-1.png",
         preview: `${BASE}coloring-book/coloring-1.jpg`
       },
       {
         label: "Page 2",
-        filename: "coloring-2.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-2.pdf",
+        pngFilename: "coloring-2.png",
         preview: `${BASE}coloring-book/coloring-2.jpg`
       },
       {
         label: "Page 3",
-        filename: "coloring-3.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-3.pdf",
+        pngFilename: "coloring-3.png",
         preview: `${BASE}coloring-book/coloring-3.jpg`
       },
       {
         label: "Page 4",
-        filename: "coloring-4.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-4.pdf",
+        pngFilename: "coloring-4.png",
         preview: `${BASE}coloring-book/coloring-4.jpg`
       },
       {
         label: "Page 5",
-        filename: "coloring-5.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-5.pdf",
+        pngFilename: "coloring-5.png",
         preview: `${BASE}coloring-book/coloring-5.jpg`
       },
       {
         label: "Page 6",
-        filename: "coloring-6.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-6.pdf",
+        pngFilename: "coloring-6.png",
         preview: `${BASE}coloring-book/coloring-6.jpg`
       },
       {
         label: "Page 7",
-        filename: "coloring-7.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-7.pdf",
+        pngFilename: "coloring-7.png",
         preview: `${BASE}coloring-book/coloring-7.jpg`
       },
       {
         label: "Page 8",
-        filename: "coloring-8.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-8.pdf",
+        pngFilename: "coloring-8.png",
         preview: `${BASE}coloring-book/coloring-8.jpg`
       },
       {
         label: "Page 9",
-        filename: "coloring-9.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-9.pdf",
+        pngFilename: "coloring-9.png",
         preview: `${BASE}coloring-book/coloring-9.jpg`
       },
       {
         label: "Page 10",
-        filename: "coloring-10.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-10.pdf",
+        pngFilename: "coloring-10.png",
         preview: `${BASE}coloring-book/coloring-10.jpg`
       },
       {
         label: "Page 11",
-        filename: "coloring-11.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-11.pdf",
+        pngFilename: "coloring-11.png",
         preview: `${BASE}coloring-book/coloring-11.jpg`
       },
       {
         label: "Page 12",
-        filename: "coloring-12.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-12.pdf",
+        pngFilename: "coloring-12.png",
         preview: `${BASE}coloring-book/coloring-12.jpg`
       },
       {
         label: "Page 13",
-        filename: "coloring-13.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-13.pdf",
+        pngFilename: "coloring-13.png",
         preview: `${BASE}coloring-book/coloring-13.jpg`
       },
       {
         label: "Page 14",
-        filename: "coloring-14.pdf",
-        type: "pdf",
+        pdfFilename: "coloring-14.pdf",
+        pngFilename: "coloring-14.png",
         preview: `${BASE}coloring-book/coloring-14.jpg`
-      },
-      {
-        label: "All Pages (ZIP)",
-        filename: "coloring.zip",
-        type: "zip"
       }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "coloring-pdfs.zip" },
+      { label: "PNG Bundle", filename: "coloring-pngs.zip" }
     ]
   }
 ];
