@@ -91,11 +91,11 @@ export default function ProjectPage() {
             </span>
           </Link>
           <Link
-            to="/opensource/"
-            className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-[#8bc34a] transition-colors"
-          >
-            <ArrowLeft size={16} /> Back to Gallery
-          </Link>
+  to="/opensource/"
+  className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
+>
+  <ArrowLeft size={14} /> RETURN TO GALLERY
+</Link>
         </div>
       </nav>
 
