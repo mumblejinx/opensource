@@ -5,14 +5,15 @@ import { motion } from 'framer-motion';
 
 const BASE = import.meta.env.BASE_URL;
 
-function FileCard({ label, filename, type, preview, projectId }: {
+function FileCard({ label, pdfFilename, pngFilename, preview, projectId }: {
   label: string;
-  filename: string;
-  type: string;
+  pdfFilename: string;
+  pngFilename: string;
   preview?: string;
   projectId: string;
 }) {
-  const downloadUrl = `${BASE}${projectId}/${filename}`;
+  const pdfUrl = `${BASE}${projectId}/${pdfFilename}`;
+  const pngUrl = `${BASE}${projectId}/${pngFilename}`;
 
   return (
     <motion.div
@@ -29,19 +30,26 @@ function FileCard({ label, filename, type, preview, projectId }: {
           />
         </div>
       )}
-      <div className="p-4 flex items-center justify-between gap-4">
-        <div>
-          <p className="text-white font-bold text-sm uppercase tracking-wider">{label}</p>
-          <p className="text-gray-500 text-xs font-mono mt-1">{filename}</p>
+      <div className="p-4">
+        <p className="text-white font-bold text-sm uppercase tracking-wider mb-3">{label}</p>
+        <div className="flex gap-2">
+          <a
+            href={pdfUrl}
+            download
+            className="flex-1 flex items-center justify-center gap-1 bg-[#1a1a1a] border border-[#333] text-[#8bc34a] text-xs font-bold px-3 py-2 hover:bg-[#8bc34a] hover:text-black hover:border-[#8bc34a] transition-colors duration-200"
+          >
+            <Download size={12} />
+            PDF
+          </a>
+          <a
+            href={pngUrl}
+            download
+            className="flex-1 flex items-center justify-center gap-1 bg-[#1a1a1a] border border-[#333] text-[#8bc34a] text-xs font-bold px-3 py-2 hover:bg-[#8bc34a] hover:text-black hover:border-[#8bc34a] transition-colors duration-200"
+          >
+            <Download size={12} />
+            PNG
+          </a>
         </div>
-        <a
-          href={downloadUrl}
-          download
-          className="flex items-center gap-2 bg-[#8bc34a] text-black text-xs font-bold px-4 py-2 hover:bg-white transition-colors duration-200 shrink-0"
-        >
-          <Download size={14} />
-          DOWNLOAD
-        </a>
       </div>
     </motion.div>
   );
@@ -56,17 +64,15 @@ export default function ProjectPage() {
       <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center gap-6">
         <p className="text-gray-400 text-xl">Project not found.</p>
         <Link
-          to="/opensource/"
-          className="flex items-center gap-2 text-[#8bc34a] hover:text-white transition-colors"
-        >
-          <ArrowLeft size={16} /> Back to Gallery
-        </Link>
+  to="/opensource/"
+  className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
+>
+  <ArrowLeft size={14} /> RETURN TO GALLERY
+</Link>
+        
       </div>
     );
   }
-
-  const zipFile = artwork.files.find(f => f.type === 'zip');
-  const otherFiles = artwork.files.filter(f => f.type !== 'zip');
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans pb-24">
@@ -80,16 +86,16 @@ export default function ProjectPage() {
             <div className="w-10 h-10 bg-[#8bc34a] flex items-center justify-center font-display font-black text-black">
               OSA
             </div>
-            <span className="font-display font-bold tracking-tight text-xl hidden sm:inline">
+            <span className="font-display font-bold tracking-tight text-xl">
               OPEN SOURCE <span className="text-[#8bc34a]">ART</span>
             </span>
           </Link>
           <Link
-            to="/opensource/"
-            className="flex items-center gap-2 text-sm text-gray-400 hover:text-[#8bc34a] transition-colors"
-          >
-            <ArrowLeft size={16} /> Back to Gallery
-          </Link>
+  to="/opensource/"
+  className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
+>
+  <ArrowLeft size={14} /> RETURN TO GALLERY
+</Link>
         </div>
       </nav>
 
@@ -132,35 +138,38 @@ export default function ProjectPage() {
           Available Downloads
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-          {otherFiles.map((file) => (
+          {artwork.files.map((file) => (
             <FileCard
-              key={file.filename}
+              key={file.label}
               {...file}
               projectId={artwork.id}
             />
           ))}
         </div>
 
-        {/* ZIP download */}
-        {zipFile && (
-          <div className="border border-[#222222] bg-[#0a0a0a] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <Package size={24} className="text-[#8bc34a]" />
-              <div>
-                <p className="text-white font-bold uppercase tracking-wider">Download Everything</p>
-                <p className="text-gray-500 text-xs font-mono mt-1">{zipFile.filename}</p>
-              </div>
+        {/* ZIP downloads */}
+        <div className="border border-[#222222] bg-[#0a0a0a] p-6">
+          <div className="flex items-center gap-4 mb-6">
+            <Package size={24} className="text-[#8bc34a]" />
+            <div>
+              <p className="text-white font-bold uppercase tracking-wider">Download Everything</p>
+              <p className="text-gray-500 text-xs mt-1">Get all files in a single bundle</p>
             </div>
-            <a
-              href={`${BASE}${artwork.id}/${zipFile.filename}`}
-              download
-              className="flex items-center gap-2 bg-[#8bc34a] text-black text-sm font-bold px-6 py-3 hover:bg-white transition-colors duration-200"
-            >
-              <Download size={16} />
-              DOWNLOAD ALL FILES
-            </a>
           </div>
-        )}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {artwork.zips.map((zip) => (
+              <a
+                key={zip.filename}
+                href={`${BASE}${artwork.id}/${zip.filename}`}
+                download
+                className="flex items-center justify-center gap-2 bg-[#8bc34a] text-black text-sm font-bold px-6 py-3 hover:bg-white transition-colors duration-200"
+              >
+                <Download size={16} />
+                {zip.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* License reminder */}
