@@ -37,9 +37,14 @@ export default function ArtCard({ artwork, index }: ArtCardProps) {
   return (
     <Link to={`/opensource/${artwork.id}`}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{
+          duration: 0.6,
+          delay: (index % 4) * 0.15,
+          ease: "easeOut"
+        }}
         className="group cursor-pointer relative block bg-[#111111] border border-[#222222] hover:border-[#8bc34a] transition-colors duration-500 overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
