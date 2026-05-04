@@ -92,7 +92,7 @@ export default function ProjectPage() {
           </Link>
           <Link
             to="/opensource/"
-            className="flex items-center gap-2 text-sm text-gray-400 hover:text-[#8bc34a] transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-[#8bc34a] transition-colors"
           >
             <ArrowLeft size={16} /> Back to Gallery
           </Link>
