@@ -85,6 +85,18 @@ export const ARTWORKS: Artwork[] = [
         pngFilename: "manic-art-sheet.png",
         preview: `${BASE}manic-art/manic-art-sheet.jpg`
       }
+      {
+        label: "Second Print",
+        pdfFilename: "manic-art02.pdf",
+        pngFilename: "manic-art02.png",
+        preview: `${BASE}manic-art/manic-art02.jpg`
+      },
+      {
+        label: "Second Print Clean",
+        pdfFilename: "manic-art02-clean.pdf",
+        pngFilename: "manic-art02-clean.png",
+        preview: `${BASE}manic-art/manic-art02-clean.jpg`
+      }
     ],
     zips: [
       { label: "PDF Bundle", filename: "manic-art-pdfs.zip" },
@@ -138,6 +150,38 @@ export const ARTWORKS: Artwork[] = [
     zips: [
       { label: "PDF Bundle", filename: "outkast-pdfs.zip" },
       { label: "PNG Bundle", filename: "outkast-pngs.zip" }
+    ]
+  },
+  {
+    id: 'bookking',
+    title: "Bookmark",
+    description: "Available as a standard print and a sheet of bookmarks.",
+    descriptionJp: "通常版とステッカーシートとして個人利用できます。",
+    image: `${BASE}bookking/bookking.jpg`,
+    files: [
+      {
+        label: "Standard Print",
+        pdfFilename: "bookking.pdf",
+        pngFilename: "bookking.png",
+        preview: `${BASE}bookking/bookking.jpg`
+      },
+      {
+        label: "Drawing",
+        pdfFilename: "bookking-clean.pdf",
+        pngFilename: "bookking-clean.png",
+        preview: `${BASE}bookking/bookking-clean.jpg`
+      }
+      {
+        label: "Standard Print Bookmarks",
+        pdfFilename: "bookking-sheet.pdf",
+        pngFilename: "bookking-sheet.png",
+        preview: `${BASE}bookking/bookking-sheet.jpg`
+      },
+
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "bookking-pdfs.zip" },
+      { label: "PNG Bundle", filename: "bookking-pngs.zip" }
     ]
   },
   {
