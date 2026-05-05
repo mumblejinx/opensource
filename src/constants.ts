@@ -84,7 +84,7 @@ export const ARTWORKS: Artwork[] = [
         pdfFilename: "manic-art-sheet.pdf",
         pngFilename: "manic-art-sheet.png",
         preview: `${BASE}manic-art/manic-art-sheet.jpg`
-      }
+      },
       {
         label: "Second Print",
         pdfFilename: "manic-art02.pdf",
@@ -170,7 +170,7 @@ export const ARTWORKS: Artwork[] = [
         pdfFilename: "bookking-clean.pdf",
         pngFilename: "bookking-clean.png",
         preview: `${BASE}bookking/bookking-clean.jpg`
-      }
+      },
       {
         label: "Standard Print Bookmarks",
         pdfFilename: "bookking-sheet.pdf",
