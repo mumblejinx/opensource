@@ -180,6 +180,36 @@ export const ARTWORKS: Artwork[] = [
     ]
   },
 
+  {
+    id: 'trump',
+    title: "Trump Demanding the Head of Captain America",
+    description: "Available as a standard print and a sticker sheet.",
+    descriptionJp: "通常版とステッカーシートとして個人利用できます。",
+    image: `${BASE}trump/trump.jpg`,
+    files: [
+      {
+        label: "Standard Print",
+        pdfFilename: "trump.pdf",
+        pngFilename: "trump.png",
+        preview: `${BASE}trump/trump.jpg`
+      },
+      {
+        label: "Coloring Page",
+        pdfFilename: "trump-clean.pdf",
+        pngFilename: "trump-clean.png",
+        preview: `${BASE}trump/trump-clean.jpg`
+      },
+      {
+        label: "Sticker Sheet",
+        pdfFilename: "trump-sheet.pdf",
+        pngFilename: "trump-sheet.png",
+        preview: `${BASE}trump/trump-sheet.jpg`
+      }
+    ],
+    zips: [
+      { label: "PNG Bundle", filename: "trump-pngs.zip" }
+    ]
+  },
 
   {
     id: 'tv-week',
