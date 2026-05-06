@@ -139,9 +139,9 @@ export const ARTWORKS: Artwork[] = [
       },
       {
         label: "Baldman Shout Out Clean",
-        pdfFilename: "baldman-clean.pdf",
-        pngFilename: "baldman-clean.png",
-        preview: `${BASE}seattle-shouts/baldman-clean.jpg`
+        pdfFilename: "baldmanclean.pdf",
+        pngFilename: "baldmanclean.png",
+        preview: `${BASE}seattle-shouts/baldmanclean.jpg`
       },
       {
         label: "Cold Killer",
@@ -163,9 +163,9 @@ export const ARTWORKS: Artwork[] = [
       },
       {
         label: "Fourth City Shout Out clean",
-        pdfFilename: "4thcity-clean.pdf",
-        pngFilename: "4thcity-clean.png",
-        preview: `${BASE}seattle-shouts/4thcity-clean.jpg`
+        pdfFilename: "4thcity02-clean.pdf",
+        pngFilename: "4thcity02-clean.png",
+        preview: `${BASE}seattle-shouts/4thcity02-clean.jpg`
       },
       {
         label: "Fourth City Original Shout Out sheet",
