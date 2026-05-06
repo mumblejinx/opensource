@@ -27,7 +27,7 @@ export const ARTWORKS: Artwork[] = [
  {
     id: 'seattle-stickers',
     title: "Early stickers from Seattle",
-    description: description: `Some of the first stickers I did while starting out in Seattle. 
+    description: `Some of the first stickers I did while starting out in Seattle. 
 	Download individual pages or the complete collection. The complete collection is only 
 	available for pngs with this collection due to size constraints.`,
     descriptionJp: "14ページのぬりえブック。個別のページまたは全ページをダウンロードできます。",
