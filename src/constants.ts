@@ -31,7 +31,7 @@ export const ARTWORKS: Artwork[] = [
 	Download individual pages or the complete collection. The complete collection is only 
 	available for pngs with this collection due to size constraints.`,
     descriptionJp: "14ページのぬりえブック。個別のページまたは全ページをダウンロードできます。",
-    image: `${BASE}seattle-stickers/mumblej.jpg`,
+    image: `${BASE}seattle-stickers/queenmeme.jpg`,
     files: [
       {
         label: "Proto MumbleJinx sticker",
@@ -122,6 +122,64 @@ export const ARTWORKS: Artwork[] = [
       { label: "PNG Bundle", filename: "seattle-stickers-pngs.zip" }
     ]
   },
+
+  {
+    id: 'seattle-shouts',
+    title: "Seattle Shout outs",
+    description: `Early Shout out stickers from Seattle. These are from around 2004-2005. 
+	Available in multiple prints and sticker sheets.`,
+    descriptionJp: "複数のカラーバリエーションでプリントとステッカーシートとして個人利用できます。",
+    image: `${BASE}seattle-shouts/baldman.jpg`,
+    files: [
+      {
+        label: "What Have You Seen, BaldMan?",
+        pdfFilename: "baldman.pdf",
+        pngFilename: "baldman.png",
+        preview: `${BASE}seattle-shouts/baldman.jpg`
+      },
+      {
+        label: "Baldman Shout Out Clean",
+        pdfFilename: "baldman-clean.pdf",
+        pngFilename: "baldman-clean.png",
+        preview: `${BASE}seattle-shouts/baldman-clean.jpg`
+      },
+      {
+        label: "Cold Killer",
+        pdfFilename: "coldkiller.pdf",
+        pngFilename: "coldkiller.png",
+        preview: `${BASE}seattle-shouts/coldkiller.jpg`
+      },
+      {
+        label: "Cold Killer Clean",
+        pdfFilename: "coldkiller-clean.pdf",
+        pngFilename: "coldkiller-clean.png",
+        preview: `${BASE}seattle-shouts/coldkiller-clean.jpg`
+      },
+      {
+        label: "Fourth City Shout Out",
+        pdfFilename: "4thcity02.pdf",
+        pngFilename: "4thcity02.png",
+        preview: `${BASE}seattle-shouts/4thcity02.jpg`
+      },
+      {
+        label: "Fourth City Shout Out clean",
+        pdfFilename: "4thcity-clean.pdf",
+        pngFilename: "4thcity-clean.png",
+        preview: `${BASE}seattle-shouts/4thcity-clean.jpg`
+      },
+      {
+        label: "Fourth City Original Shout Out sheet",
+        pdfFilename: "fourthcity01-sheet.pdf",
+        pngFilename: "fourthcity01-sheet.png",
+        preview: `${BASE}seattle-shouts/fourthcity01-sheet.jpg`
+      }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "seattle-shouts-pdfs.zip" },
+      { label: "PNG Bundle", filename: "seattle-shouts-pngs.zip" }
+    ]
+  },
+
 
   {
     id: 'tv-week',
