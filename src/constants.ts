@@ -23,6 +23,106 @@ export interface Artwork {
 }
 
 export const ARTWORKS: Artwork[] = [
+
+ {
+    id: 'seattle-stickers',
+    title: "Early stickers from Seattle",
+    description: "Some of the first stickers I did while starting out in Seattle. 
+	Download individual pages or the complete collection. The complete collection is only 
+	available fpr pngs with this collection due to size constraints.",
+    descriptionJp: "14ページのぬりえブック。個別のページまたは全ページをダウンロードできます。",
+    image: `${BASE}seattle-stickers/mumblej.jpg`,
+    files: [
+      {
+        label: "Proto MumbleJinx sticker",
+        pdfFilename: "mumblej.pdf",
+        pngFilename: "mumblej.png",
+        preview: `${BASE}seattle-stickers/mumblej.jpg`
+      },
+      {
+        label: "Proto MumbleJinx sticker sheet",
+        pdfFilename: "mumblej-sheet.pdf",
+        pngFilename: "mumblej-sheet.png",
+        preview: `${BASE}seattle-stickers/mumblej-sheet.jpg`
+      },
+      {
+        label: "The Queen Meme",
+        pdfFilename: "queenmeme.pdf",
+        pngFilename: "queenmeme.png",
+        preview: `${BASE}seattle-stickers/queenmeme.jpg`
+      },
+      {
+        label: "The Queen Meme clean",
+        pdfFilename: "queenmeme-clean.pdf",
+        pngFilename: "queenmeme-clean.png",
+        preview: `${BASE}seattle-stickers/queenmeme-clean.jpg`
+      },
+      {
+        label: "The Queen Meme sheet",
+        pdfFilename: "queenmeme-sheet.pdf",
+        pngFilename: "queenmeme-sheet.png",
+        preview: `${BASE}seattle-stickers/queenmeme-sheet.jpg`
+      },
+      {
+        label: "Chase the Queen",
+        pdfFilename: "chasetq.pdf",
+        pngFilename: "chasetq.png",
+        preview: `${BASE}seattle-stickers/chasetq.jpg`
+      },
+      {
+        label: "Chase the Queen sheet",
+        pdfFilename: "chasetq-sheet.pdf",
+        pngFilename: "chasetq-sheet.png",
+        preview: `${BASE}seattle-stickers/chasetq-sheet.jpg`
+      },
+      {
+        label: "Proto Yume Sueno",
+        pdfFilename: "mumble.pdf",
+        pngFilename: "mumble.png",
+        preview: `${BASE}seattle-stickers/mumble.jpg`
+      },
+      {
+        label: "Proto Yume Sueno sheet",
+        pdfFilename: "mumble-sheet.pdf",
+        pngFilename: "mumble-sheet.png",
+        preview: `${BASE}seattle-stickers/mumble-sheet.jpg`
+      },
+      {
+        label: "Honey Dripper",
+        pdfFilename: "queenmb.pdf",
+        pngFilename: "queenmb.png",
+        preview: `${BASE}seattle-stickers/queenmb.jpg`
+      },
+      {
+        label: "Honey Dripper sheet",
+        pdfFilename: "queenmb-sheet.pdf",
+        pngFilename: "queenmb-sheet.png",
+        preview: `${BASE}seattle-stickers/queenmb-sheet.jpg`
+      },
+      {
+        label: "The Problem with Sue Storm",
+        pdfFilename: "invisible.pdf",
+        pngFilename: "invisible.png",
+        preview: `${BASE}seattle-stickers/invisible.jpg`
+      },
+      {
+        label: "Wild Style",
+        pdfFilename: "wildstyle.pdf",
+        pngFilename: "wildstyle.png",
+        preview: `${BASE}seattle-stickers/wildstyle.jpg`
+      },
+      {
+        label: "Always Wanted to B-Boy sheet",
+        pdfFilename: "bboy-sheet.pdf",
+        pngFilename: "bboy-sheet.png",
+        preview: `${BASE}seattle-stickers/bboy-sheet.jpg`
+      }
+    ],
+    zips: [
+      { label: "PNG Bundle", filename: "seattle-stickers-pngs.zip" }
+    ]
+  },
+
   {
     id: 'tv-week',
     title: "Turn Off TV Week",
@@ -176,7 +276,7 @@ export const ARTWORKS: Artwork[] = [
         pdfFilename: "bookking-sheet.pdf",
         pngFilename: "bookking-sheet.png",
         preview: `${BASE}bookking/bookking-sheet.jpg`
-      },
+      }
 
     ],
     zips: [
