@@ -185,7 +185,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Super Sheroes",
     description: "Available as standard prints and a sticker sheet.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
-    image: `${BASE}stickortreat/stickortreat.jpg`,
+    image: `${BASE}super-sheroes/storm.jpg`,
     files: [
       {
         label: "Storm",
@@ -297,7 +297,7 @@ export const ARTWORKS: Artwork[] = [
     title: "Interpretation of Gawain and the Maiden",
     description: "Available as a standard print and a coloring page.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
-    image: `${BASE}stickortreat/stickortreat.jpg`,
+    image: `${BASE}gawain/gawain.jpg`,
     files: [
       {
         label: "Gawain",
