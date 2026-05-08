@@ -181,6 +181,49 @@ export const ARTWORKS: Artwork[] = [
   },
 
   {
+    id: 'super-sheroes',
+    title: "Super Sheroes",
+    description: "Available as standard prints and a sticker sheet.",
+    descriptionJp: "通常版とステッカーシートとして個人利用できます。",
+    image: `${BASE}stickortreat/stickortreat.jpg`,
+    files: [
+      {
+        label: "Storm",
+        pdfFilename: "storm.pdf",
+        pngFilename: "storm.png",
+        preview: `${BASE}super-sheros/storm.jpg`
+      },
+      {
+        label: "Jean Grey",
+        pdfFilename: "jeangrey.pdf",
+        pngFilename: "jeangrey.png",
+        preview: `${BASE}super-sheroes/jeangrey.jpg`
+      },
+      {
+        label: "Super Sheroes Sticker Sheet",
+        pdfFilename: "supersheroessheet.pdf",
+        pngFilename: "supersheroessheet.png",
+        preview: `${BASE}supersheroes/supersheroessheet.jpg`
+      },
+      {
+        label: "Angelica Jones",
+        pdfFilename: "angelica_jones.pdf",
+        pngFilename: "angelica_jones.png",
+        preview: `${BASE}supersheroes/angelica_jones.jpg`
+      },
+      {
+        label: "Angelica Jones Coloring Page",
+        pdfFilename: "angelica_jones-clean.pdf",
+        pngFilename: "angelica_jones-clean.png",
+        preview: `${BASE}supersheroes/angelica_jones-clean.jpg`
+      }
+    ],
+    zips: [
+      { label: "PNG Bundle", filename: "supersheroes-pngs.zip" }
+    ]
+  },
+
+  {
     id: 'trump',
     title: "Trump Demanding the Head of Captain America",
     description: "Available as a standard print and a sticker sheet.",
@@ -208,6 +251,70 @@ export const ARTWORKS: Artwork[] = [
     ],
     zips: [
       { label: "PNG Bundle", filename: "trump-pngs.zip" }
+    ]
+  },
+
+  {
+    id: 'stickortreat',
+    title: "Stick or Treat",
+    description: "Available as standard prints and sticker sheets.",
+    descriptionJp: "通常版とステッカーシートとして個人利用できます。",
+    image: `${BASE}stickortreat/stickortreat.jpg`,
+    files: [
+      {
+        label: "Stick or Treat Print",
+        pdfFilename: "stickortreat.pdf",
+        pngFilename: "stickortreat.png",
+        preview: `${BASE}stickortreat/stickortreat.jpg`
+      },
+      {
+        label: "Stick or Treat Sheet",
+        pdfFilename: "stickortreat-sheet.pdf",
+        pngFilename: "stickortreat-sheet.png",
+        preview: `${BASE}stickortreat/stickortreat-sheet.jpg`
+      },
+      {
+        label: "Stick or Treat inverted",
+        pdfFilename: "stickortreati.pdf",
+        pngFilename: "stickortreati.png",
+        preview: `${BASE}stickortreat/stickortreati.jpg`
+      },
+      {
+        label: "Stick or Treat inverted Sheet",
+        pdfFilename: "stickortreati-sheet.pdf",
+        pngFilename: "stickortreati-sheet.png",
+        preview: `${BASE}manic-art/manic-art02-clean.jpg`
+      }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "stickortreat-pdfs.zip" },
+      { label: "PNG Bundle", filename: "stickortreat-pngs.zip" }
+    ]
+  },
+
+ {
+    id: 'gawain',
+    title: "Interpretation of Gawain and the Maiden",
+    description: "Available as a standard print and a coloring page.",
+    descriptionJp: "通常版とステッカーシートとして個人利用できます。",
+    image: `${BASE}stickortreat/stickortreat.jpg`,
+    files: [
+      {
+        label: "Gawain",
+        pdfFilename: "gawain.pdf",
+        pngFilename: "gawain.png",
+        preview: `${BASE}gawain/gawain.jpg`
+      },
+      {
+        label: "Gawain Coloring Page",
+        pdfFilename: "gawain-clean.pdf",
+        pngFilename: "gawain-clean.png",
+        preview: `${BASE}gawain/gawain-clean.jpg`
+      }
+    ],
+    zips: [
+      { label: "PDF Bundle", filename: "gawain-pdfs.zip" },
+      { label: "PNG Bundle", filename: "gawain-pngs.zip" }
     ]
   },
 
