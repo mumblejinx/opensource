@@ -297,13 +297,13 @@ export const ARTWORKS: Artwork[] = [
     title: "Interpretation of Gawain and the Maiden",
     description: "Available as a standard print and a coloring page.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
-    image: `${BASE}gawain/gawain.jpg`,
+    image: `${BASE}gawain/gawain-color.jpg`,
     files: [
       {
         label: "Gawain",
-        pdfFilename: "gawain.pdf",
-        pngFilename: "gawain.png",
-        preview: `${BASE}gawain/gawain.jpg`
+        pdfFilename: "gawain-color.pdf",
+        pngFilename: "gawain-color.png",
+        preview: `${BASE}gawain/gawain-color.jpg`
       },
       {
         label: "Gawain Coloring Page",
