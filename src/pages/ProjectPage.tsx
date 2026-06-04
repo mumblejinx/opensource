@@ -3,17 +3,18 @@ import { ARTWORKS } from '../constants';
 import { Download, ArrowLeft, Package } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const BASE = import.meta.env.BASE_URL;
+const ARCHIVE_BASE = 'https://archive.org/download';
 
-function FileCard({ label, pdfFilename, pngFilename, preview, projectId }: {
+function FileCard({ label, pdfFilename, pngFilename, preview, archiveId, pdfArchiveId }: {
   label: string;
   pdfFilename: string;
   pngFilename: string;
   preview?: string;
-  projectId: string;
+  archiveId: string;
+  pdfArchiveId?: string;
 }) {
-  const pdfUrl = `${BASE}${projectId}/${pdfFilename}`;
-  const pngUrl = `${BASE}${projectId}/${pngFilename}`;
+  const pdfUrl = `${ARCHIVE_BASE}/${pdfArchiveId ?? archiveId}/${pdfFilename}`;
+  const pngUrl = `${ARCHIVE_BASE}/${archiveId}/${pngFilename}`;
 
   return (
     <motion.div
@@ -142,7 +143,7 @@ export default function ProjectPage() {
             <FileCard
               key={file.label}
               {...file}
-              projectId={artwork.id}
+              archiveId={artwork.archiveId}
             />
           ))}
         </div>
@@ -160,7 +161,7 @@ export default function ProjectPage() {
             {artwork.zips.map((zip) => (
               <a
                 key={zip.filename}
-                href={`${BASE}${artwork.id}/${zip.filename}`}
+                href={`${ARCHIVE_BASE}/${artwork.archiveId}/${zip.filename}`}
                 download
                 className="flex items-center justify-center gap-2 bg-[#8bc34a] text-black text-sm font-bold px-6 py-3 hover:bg-white transition-colors duration-200"
               >

@@ -5,6 +5,7 @@ export interface ArtworkFile {
   pdfFilename: string;
   pngFilename: string;
   preview?: string;
+  pdfArchiveId?: string; // override if PDF lives in a different Archive.org item
 }
 
 export interface ArtworkZip {
@@ -14,6 +15,7 @@ export interface ArtworkZip {
 
 export interface Artwork {
   id: string;
+  archiveId: string; // Archive.org item identifier
   title: string;
   description: string;
   descriptionJp: string;
@@ -26,6 +28,7 @@ export const ARTWORKS: Artwork[] = [
 
  {
     id: 'seattle-stickers',
+    archiveId: 'seattle-stickers-mumblejinx',
     title: "Early stickers from Seattle",
     description: `Some of the first stickers I did while starting out in Seattle. 
 	Download individual pages or the complete collection. The complete collection is only 
@@ -125,6 +128,7 @@ export const ARTWORKS: Artwork[] = [
 
   {
     id: 'seattle-shouts',
+    archiveId: 'seattle-shouts-mumblejinx',
     title: "Seattle Shout outs",
     description: `Early Shout out stickers from Seattle. These are from around 2004-2005. 
 	Available in multiple prints and sticker sheets.`,
@@ -182,6 +186,7 @@ export const ARTWORKS: Artwork[] = [
 
   {
     id: 'super-sheroes',
+    archiveId: 'supersheroes-mumblejinx',
     title: "Super Sheroes",
     description: "Available as standard prints and a sticker sheet.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -209,7 +214,8 @@ export const ARTWORKS: Artwork[] = [
         label: "Angelica Jones",
         pdfFilename: "angelica_jones.pdf",
         pngFilename: "angelica_jones.png",
-        preview: `${BASE}supersheroes/angelica_jones.jpg`
+        preview: `${BASE}super-sheroes/angelica_jones.jpg`,
+        pdfArchiveId: "angelica_jones-mumblejinx"
       },
       {
         label: "Angelica Jones Coloring Page",
@@ -225,6 +231,7 @@ export const ARTWORKS: Artwork[] = [
 
   {
     id: 'trump',
+    archiveId: 'trump-artfiles',
     title: "Trump Demanding the Head of Captain America",
     description: "Available as a standard print and a sticker sheet.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -256,6 +263,7 @@ export const ARTWORKS: Artwork[] = [
 
   {
     id: 'stickortreat',
+    archiveId: 'stickortreat-mumblejinx',
     title: "Stick or Treat",
     description: "Available as standard prints and sticker sheets.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -294,6 +302,7 @@ export const ARTWORKS: Artwork[] = [
 
  {
     id: 'gawain',
+    archiveId: 'gawain-mumblejinx',
     title: "Interpretation of Gawain and the Maiden",
     description: "Available as a standard print and a coloring page.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -320,6 +329,7 @@ export const ARTWORKS: Artwork[] = [
 
   {
     id: 'tv-week',
+    archiveId: 'tv-week-pdfs',
     title: "Turn Off TV Week",
     description: "Anti-television propaganda art. Available as a standard print, a clean version, a color version, and sticker sheets.",
     descriptionJp: "テレビ反対のプロパガンダアート。通常版、クリーン版、カラー版、ステッカーシートとして個人利用できます。",
@@ -363,6 +373,7 @@ export const ARTWORKS: Artwork[] = [
   },
   {
     id: 'manic-art',
+    archiveId: 'manic-art-mumblejinx',
     title: "Manic Art",
     description: "Available as a standard print and a sticker sheet.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -400,6 +411,7 @@ export const ARTWORKS: Artwork[] = [
   },
   {
     id: 'outkast',
+    archiveId: 'outkast-mumblejinx',
     title: "Outkast",
     description: "Available in multiple colorways as prints and sticker sheets.",
     descriptionJp: "複数のカラーバリエーションでプリントとステッカーシートとして個人利用できます。",
@@ -449,6 +461,7 @@ export const ARTWORKS: Artwork[] = [
   },
   {
     id: 'bookking',
+    archiveId: 'bookking-mumblejinx',
     title: "Bookmark",
     description: "Available as a standard print and a sheet of bookmarks.",
     descriptionJp: "通常版とステッカーシートとして個人利用できます。",
@@ -481,6 +494,7 @@ export const ARTWORKS: Artwork[] = [
   },
   {
     id: 'coloring-book',
+    archiveId: 'coloring-mumblejinx',
     title: "Coloring Book",
     description: "A 14-page coloring book. Download individual pages or the complete collection.",
     descriptionJp: "14ページのぬりえブック。個別のページまたは全ページをダウンロードできます。",
