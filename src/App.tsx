@@ -8,9 +8,12 @@ import GlitchText from './components/GlitchText';
 import Marquee from './components/Marquee';
 import { ARTWORKS } from './constants';
 import ArtCard from './components/ArtCard';
+import TabBar from './components/TabBar';
 import { Palette, ExternalLink } from 'lucide-react';
 import { Routes, Route } from 'react-router-dom';
 import ProjectPage from './pages/ProjectPage';
+import SectionPage from './pages/SectionPage';
+import ContentPage from './pages/ContentPage';
 
 function HomePage() {
   return (
@@ -32,7 +35,7 @@ function HomePage() {
             <a href="#about" className="hidden md:inline text-sm font-medium hover:text-[#8bc34a] transition-colors">ABOUT</a>
             <a href="#license" className="hidden md:inline text-sm font-medium hover:text-[#8bc34a] transition-colors">LICENSE</a>
             <a
-              href="https://mumblejinx.github.io"
+              href="https://jakegalm.com"
               className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
             >
               MAIN SITE <ExternalLink size={14} />
@@ -40,6 +43,8 @@ function HomePage() {
           </div>
         </div>
       </nav>
+
+      <TabBar active="art" />
 
       {/* Hero / Description */}
       <header id="gallery" className="max-w-7xl mx-auto px-6 pt-24 pb-16">
@@ -79,7 +84,7 @@ function HomePage() {
             </p>
             <p className="text-gray-500 text-sm md:text-lg leading-relaxed italic border-l-4 border-[#222222] pl-6">
               {/* Japanese text - paste your original here if needed */}
-              These works are free for personal and non-profit use only.
+              These works are free for personal use only.
               Not for resale or commercial advertising.
             </p>
           </motion.div>
@@ -117,7 +122,7 @@ function HomePage() {
             <div className="space-y-4 text-gray-500 text-sm italic border-l border-[#222222] pl-8">
               <p>
                 {/* Japanese text - paste your original here if needed */}
-                These artworks are free to use for personal and non-profit projects.
+                These artworks are free to use for personal projects.
                 Please do not use them for commercial purposes or resale.
               </p>
             </div>
@@ -131,7 +136,7 @@ function HomePage() {
           <h2 className="text-4xl font-display font-bold text-white mb-8 uppercase tracking-tighter">Usage &amp; License</h2>
           <div className="bg-[#111] p-6 border-l-4 border-[#8bc34a] mb-8">
             <p className="text-[#8bc34a] font-mono text-xs uppercase tracking-widest mb-2">Primary Rule</p>
-            <p className="text-xl font-bold">Personal and Non-Profit Use Only.</p>
+            <p className="text-xl font-bold">Personal Use Only.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 text-sm text-gray-400">
             <div className="space-y-2">
@@ -188,6 +193,14 @@ export default function App() {
   return (
     <Routes>
       <Route path="/opensource/" element={<HomePage />} />
+
+      {/* Research + Projects — specific routes BEFORE the artwork catch-all */}
+      <Route path="/opensource/research" element={<SectionPage section="research" />} />
+      <Route path="/opensource/research/:id" element={<ContentPage section="research" />} />
+      <Route path="/opensource/projects" element={<SectionPage section="projects" />} />
+      <Route path="/opensource/projects/:id" element={<ContentPage section="projects" />} />
+
+      {/* Art detail — flat catch-all, must come LAST */}
       <Route path="/opensource/:projectId" element={<ProjectPage />} />
     </Routes>
   );

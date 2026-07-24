@@ -178,7 +178,7 @@ export default function ProjectPage() {
         <div className="border-l-4 border-[#222222] pl-6">
           <p className="text-[#8bc34a] font-mono text-xs uppercase tracking-widest mb-2">License</p>
           <p className="text-gray-400 text-sm leading-relaxed">
-            Personal and non-profit use only. You may not resell these files or sell physical prints.
+            Personal use only. You may not resell these files or sell physical prints.
             Attribution is appreciated but not required.
           </p>
         </div>

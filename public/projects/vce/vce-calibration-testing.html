@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCE Calibration & Testing Procedures — Builder Package</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1510;
+  --ink2: #3a3028;
+  --ink3: #6a5f52;
+  --parchment: #f8f4ed;
+  --brass: #a07828;
+  --brass-light: #c8a048;
+  --brass-dark: #705818;
+  --verdigris: #2a5840;
+  --crimson: #882020;
+  --slate: #283848;
+  --border: rgba(26,21,16,0.12);
+  --border-strong: rgba(26,21,16,0.22);
+  --page: #faf7f2;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #2a2018;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 16px;
+}
+.page {
+  max-width: 960px;
+  margin: 40px auto;
+  background: var(--page);
+  box-shadow: 0 8px 80px rgba(0,0,0,0.6);
+}
+.brass-rule {
+  border: none;
+  border-top: 1px solid var(--brass);
+  margin: 48px 0;
+  position: relative;
+}
+.brass-rule::after {
+  content: '◆';
+  position: absolute;
+  top: -0.65em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--page);
+  padding: 0 14px;
+  color: var(--brass);
+  font-size: 0.65rem;
+}
+.cover {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 80px 96px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(160,120,40,0.12) 0%, transparent 55%),
+    repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(160,120,40,0.02) 60px, rgba(160,120,40,0.02) 61px);
+}
+.cover-top { position: relative; display: flex; justify-content: space-between; margin-bottom: 48px; }
+.cover-kicker { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(200,160,72,0.7); }
+.cover-doc-num { font-family: 'Courier Prime', monospace; font-size: 0.6rem; color: rgba(200,160,72,0.6); text-align: right; line-height: 1.6; }
+.cover-title { position: relative; z-index: 1; }
+.cover-title h1 { font-family: 'Libre Baskerville', serif; font-size: 3.2rem; font-weight: 400; line-height: 1.1; color: var(--parchment); }
+.cover-title h1 em { font-style: italic; color: var(--brass-light); }
+.cover-sub { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(248,244,237,0.55); margin-top: 20px; }
+.cover-meta { position: relative; display: flex; gap: 48px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(200,160,72,0.25); }
+.cover-meta-item label { font-family: 'Josefin Sans', sans-serif; font-size: 0.52rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(200,160,72,0.6); display: block; margin-bottom: 4px; }
+.cover-meta-item span { font-size: 0.82rem; color: rgba(248,244,237,0.75); }
+.body-content { padding: 64px 96px; }
+h2 { font-family: 'Libre Baskerville', serif; font-size: 1.9rem; font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 6px; }
+h2 em { font-style: italic; color: var(--brass); }
+h3 { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brass); margin: 40px 0 16px; }
+h4 { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 28px 0 10px; }
+p { color: var(--ink2); margin-bottom: 16px; font-size: 0.95rem; }
+.callout { border-left: 3px solid var(--brass); padding: 16px 20px; margin: 24px 0; background: rgba(160,120,40,0.05); font-size: 0.88rem; }
+.callout.warn { border-color: #c85820; background: rgba(200,88,32,0.05); }
+.callout.critical { border-color: var(--crimson); background: rgba(136,32,32,0.06); }
+.callout.good { border-color: var(--verdigris); background: rgba(42,88,64,0.05); }
+.callout-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brass); margin-bottom: 8px; }
+.callout.warn .callout-label { color: #c85820; }
+.callout.critical .callout-label { color: var(--crimson); }
+.callout.good .callout-label { color: var(--verdigris); }
+
+/* TEST BLOCK */
+.test-block { border: 1px solid var(--border-strong); margin: 32px 0; background: white; }
+.test-header { background: var(--ink); color: var(--parchment); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.test-id { font-family: 'Courier Prime', monospace; font-size: 0.72rem; color: var(--brass-light); white-space: nowrap; }
+.test-title { font-family: 'Libre Baskerville', serif; font-size: 1.0rem; font-weight: 400; flex: 1; }
+.test-stage { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,160,72,0.7); white-space: nowrap; }
+.test-body { padding: 22px 24px; }
+.test-body > p { font-size: 0.88rem; margin-bottom: 12px; }
+
+/* EQUIPMENT LIST */
+.equip-list { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.equip-list li { font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(40,56,72,0.08); border: 1px solid rgba(40,56,72,0.2); color: var(--slate); padding: 3px 10px; }
+
+/* PASS / FAIL TABLE */
+.pf-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 16px 0; }
+.pf-table th { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 7px 12px; text-align: left; border-bottom: 2px solid var(--brass); background: rgba(160,120,40,0.04); color: var(--brass); }
+.pf-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink2); }
+.pf-table td:first-child { font-family: 'Courier Prime', monospace; font-size: 0.78rem; color: var(--ink); white-space: nowrap; background: rgba(160,120,40,0.02); }
+.pf-table td.pass { color: var(--verdigris); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.pf-table td.fail { color: var(--crimson); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.pf-table tr:last-child td { border-bottom: none; }
+
+/* SENSORY BOX */
+.sensory-box { background: rgba(42,88,64,0.06); border: 1px solid rgba(42,88,64,0.2); padding: 16px 20px; margin: 16px 0; }
+.sensory-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--verdigris); margin-bottom: 10px; }
+.sensory-row { display: flex; gap: 12px; margin-bottom: 8px; font-size: 0.84rem; align-items: flex-start; }
+.sensory-sense { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brass-dark); min-width: 60px; padding-top: 2px; }
+.sensory-desc { color: var(--ink2); flex: 1; }
+
+/* SECTION BREAK */
+.section-break { background: rgba(160,120,40,0.06); border-top: 2px solid var(--brass); border-bottom: 1px solid var(--border); padding: 20px 0 16px; margin: 48px 0 32px; }
+.section-break-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--brass); margin-bottom: 4px; }
+.section-break h2 { font-size: 1.5rem; }
+
+/* STAGE BADGE */
+.stage-badge { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 2px 8px; margin-right: 8px; }
+.stage-subsystem { background: rgba(40,56,72,0.1); color: var(--slate); border: 1px solid rgba(40,56,72,0.2); }
+.stage-integration { background: rgba(160,120,40,0.12); color: var(--brass-dark); border: 1px solid rgba(160,120,40,0.25); }
+.stage-full-system { background: rgba(42,88,64,0.12); color: var(--verdigris); border: 1px solid rgba(42,88,64,0.25); }
+.stage-performance { background: rgba(136,32,32,0.1); color: var(--crimson); border: 1px solid rgba(136,32,32,0.2); }
+
+/* FOOTER */
+.doc-footer { background: var(--ink); color: rgba(248,244,237,0.55); padding: 28px 96px; display: flex; gap: 48px; font-size: 0.72rem; }
+.footer-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,160,72,0.5); margin-bottom: 4px; }
+.footer-value { line-height: 1.6; }
+/* ===== VCE reciprocal top-nav ===== */
+.vce-topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:2px;flex-wrap:wrap;background:var(--ink);border-bottom:1px solid rgba(200,160,72,0.25);padding:9px 22px;}
+.vce-topnav__home{font-family:'Josefin Sans',sans-serif;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--brass-light);text-decoration:none;margin-right:auto;padding:6px 10px 6px 0;transition:color .15s;}
+.vce-topnav__home:hover{color:#f8f4ed;}
+.vce-topnav__link{font-family:'Josefin Sans',sans-serif;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(248,244,237,0.70);text-decoration:none;padding:6px 10px;border-radius:2px;transition:color .15s,background .15s;}
+.vce-topnav__link:hover{color:#f8f4ed;background:rgba(160,120,40,0.18);}
+.vce-topnav__link.is-current{color:var(--ink);background:var(--brass-light);pointer-events:none;}
+.vce-topnav__link.is-out{color:var(--brass-light);}
+.vce-topnav__sep{width:1px;align-self:stretch;margin:2px 7px;background:rgba(200,160,72,0.25);}
+@media(max-width:820px){.vce-topnav{padding:7px 12px;}.vce-topnav__home{flex-basis:100%;margin:0 0 5px;}.vce-topnav__link{padding:5px 7px;font-size:0.55rem;}}
+</style>
+</head>
+<body>
+<nav class="vce-topnav" aria-label="Volta Confluence Engine">
+  <a class="vce-topnav__home" href="./index.html">&#9670; Volta Confluence Engine</a>
+  <a class="vce-topnav__link" href="./vce-engineers-quick-check.html">Quick&nbsp;Check</a>
+  <a class="vce-topnav__link" href="./vce-scientific-paper.html">Scientific&nbsp;Paper</a>
+  <a class="vce-topnav__link" href="./volta-confluence-engine-complete.html">Complete&nbsp;Build</a>
+  <a class="vce-topnav__link" href="./vce-custom-parts-register.html">Parts&nbsp;Register</a>
+  <a class="vce-topnav__link" href="./vce-machining-instructions.html">Machining</a>
+  <a class="vce-topnav__link is-current" href="./vce-calibration-testing.html">Calibration</a>
+  <a class="vce-topnav__link" href="./vce-builders-report.html">Builder's&nbsp;Report</a>
+  <span class="vce-topnav__sep"></span>
+  <a class="vce-topnav__link is-out" href="https://mumblejinx.github.io/opensource/">Open&nbsp;Source</a>
+  <a class="vce-topnav__link is-out" href="https://jakegalm.com">JakeGalm.com</a>
+</nav>
+
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div><div class="cover-kicker">Confluence Engine Project · Builder Package · Wave 2</div></div>
+    <div class="cover-doc-num">VCE-CAL-001<br>Revision 1.0<br>2025</div>
+  </div>
+  <div class="cover-title">
+    <h1>Calibration &amp;<br><em>Testing Procedures</em></h1>
+    <div class="cover-sub">Volta Confluence Engine — What Pass Looks, Sounds, and Feels Like</div>
+  </div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Parent Documents</label><span>VCE-MFR-001 · VCE-MACH-001</span></div>
+    <div class="cover-meta-item"><label>Licence</label><span>CC BY-NC</span></div>
+    <div class="cover-meta-item"><label>Concept</label><span>Jake Galm, c. 2010</span></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-content">
+
+  <p style="margin-top:8px;">This document describes how to verify that each subsystem of the Volta Confluence Engine is working correctly. It covers four testing stages: subsystem tests (individual components before integration), integration tests (subsystems working together), full system tests (the complete instrument), and the performance readiness check (the final verification before a live event).</p>
+
+  <p>Each test specifies the equipment required, the procedure, the pass criteria, and — critically — what a passing result looks, sounds, and feels like. Instruments tell you numbers. This document tells you what those numbers mean in practice.</p>
+
+  <div class="callout critical">
+    <div class="callout-label">High Voltage — All Electrical Tests</div>
+    <p>All electrical tests involve circuits operating at up to 600V DC. A qualified electronics technician must be present for all high-voltage commissioning. The bleed resistor (1MΩ, 5W) must be permanently connected across the capacitor bank before any other connections are made. Discharge the bank fully and verify with voltmeter before touching any internal connection. Treat all capacitor bank terminals as live until proven otherwise.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">On Pass Criteria Certainty</div>
+    <p>All pass/fail thresholds in this document are engineering estimates based on design analysis. No physical prototype of this instrument has been built. A builder who finds that a stated threshold is not achievable, or that a different threshold produces better results, should document this in their Builder's Report (VCE-BRT-001). These thresholds will be updated as real-world build data arrives.</p>
+  </div>
+
+  <!-- STAGE LEGEND -->
+  <p>Tests are labelled by stage: <span class="stage-badge stage-subsystem">Subsystem</span> tests an isolated component. <span class="stage-badge stage-integration">Integration</span> tests two or more subsystems working together. <span class="stage-badge stage-full-system">Full System</span> tests the complete instrument. <span class="stage-badge stage-performance">Performance</span> is the pre-show verification.</p>
+
+  <!-- ═══════════════════════════════════
+       SECTION I — ENERGY SYSTEM
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section I</div>
+    <h2>Energy <em>System</em></h2>
+  </div>
+
+  <!-- CAL-E01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-E01</div>
+      <div class="test-title">Generator Output Voltage</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the generator produces correct AC output at comfortable cranking speed before the Cockcroft-Walton multiplier is connected.</p>
+      <ul class="equip-list">
+        <li>AC voltmeter or multimeter</li>
+        <li>2× test leads</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Disconnect C-W multiplier input. Connect voltmeter across generator output terminals. Crank at comfortable sustained pace — approximately 2 revolutions per second. Record RMS voltage over 30 seconds of steady cranking.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Generator output voltage</td><td class="pass">20–28V AC RMS at comfortable crank rate</td><td class="fail">Below 18V or above 32V</td><td>Below 18V: generator winding or magnet issue — inspect and rewind. Above 32V: check generator specification matches design — overvoltage will stress C-W components.</td></tr>
+        <tr><td>Voltage stability</td><td class="pass">Fluctuates less than ±3V during steady cranking</td><td class="fail">Erratic — large swings >5V</td><td>Erratic output suggests loose connection, brush contact issue, or flywheel too small to smooth crank strokes. Check flywheel mass and generator connections.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Feels Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">Cranking feels smooth and consistent — like winding a large clockwork mechanism. No catches, no dead spots, no sudden changes in resistance. The flywheel should carry the crank through each stroke.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">Near-silent. A faint bearing hiss from the generator at speed. No electrical buzzing, no mechanical clattering. If you hear a periodic click or clunk at crank frequency, the ratchet is engaging incorrectly.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-E02 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-E02</div>
+      <div class="test-title">Cockcroft-Walton Multiplier Output</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the C-W multiplier reaches target voltage into a dummy resistive load before connecting the capacitor bank. Do not skip the dummy load step — connecting an untested multiplier directly to the capacitor bank can cause component failure if the output is incorrect.</p>
+      <ul class="equip-list">
+        <li>High-voltage DC voltmeter (1kV range)</li>
+        <li>Dummy load resistor — 600V rated, ~23W at 600V (approx. 15kΩ, 30W wirewound)</li>
+        <li>Safety gloves and insulated probes</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Connect dummy load resistor across C-W output terminals. Connect voltmeter across dummy load. Crank at steady comfortable pace for 60 seconds. Record peak and steady-state output voltage.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Steady-state output voltage</td><td class="pass">540–660V DC under load</td><td class="fail">Below 480V or above 700V</td><td>Low voltage: count multiplier stages — one failed diode or capacitor collapses that stage. Test each stage with a DC voltmeter — voltage should step up evenly. High voltage: check stage count and input voltage.</td></tr>
+        <tr><td>Voltage ripple</td><td class="pass">Less than 20V peak-to-peak at steady crank rate</td><td class="fail">Ripple >30V</td><td>High ripple indicates insufficient multiplier capacitance or a partially failed capacitor. Replace suspect capacitors — test each with capacitance meter before installation.</td></tr>
+        <tr><td>Bleed resistor function</td><td class="pass">Voltage drops to below 50V within 60 seconds of stopping cranking</td><td class="fail">Voltage remains above 100V after 90 seconds</td><td>Bleed resistor open circuit — replace. Do not operate instrument without functioning bleed resistor.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Looks Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sight</span><span class="sensory-desc">Voltmeter needle rises steadily as cranking continues. Reaches plateau in 30–60 seconds. Needle is reasonably stable — small fluctuations at crank rate are normal and expected. After stopping, needle drops slowly and steadily to zero over about 60 seconds — this is the bleed resistor discharging.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Caution</span><span class="sensory-desc">Do not touch any exposed terminal on the C-W output or dummy load during this test. The dummy load will be warm after the test — allow to cool before handling.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-E03 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-E03</div>
+      <div class="test-title">Capacitor Bank Charge and Energy Test</div>
+      <div class="test-stage"><span class="stage-badge stage-integration">Integration</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the bank accepts charge correctly, reaches target voltage, and stores the expected energy. The energy figure is estimated — the actual measured figure becomes the confirmed specification for this build.</p>
+      <ul class="equip-list">
+        <li>High-voltage DC voltmeter (1kV range)</li>
+        <li>Stopwatch</li>
+        <li>Known resistive load for discharge (calculate from target voltage and desired discharge time)</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Connect bank to C-W output. Crank steadily and record time to reach 550V. Then discharge through known resistive load while recording voltage vs. time. Calculate stored energy: E = ½CV². Compare to expected 4,000–5,000J.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Time to 550V from empty</td><td class="pass">3–8 minutes of comfortable cranking</td><td class="fail">More than 15 minutes</td><td>Very slow charging: check C-W output voltage under load — may be lower than expected. Check capacitor bank total capacitance — measure each cell and verify series-parallel arrangement gives target total.</td></tr>
+        <tr><td>Stored energy (calculated from discharge)</td><td class="pass">3,500–5,500J</td><td class="fail">Below 2,500J</td><td>Low energy indicates lower actual capacitance than specified. Measure each capacitor cell — replace any significantly below rated value.</td></tr>
+        <tr><td>Self-discharge rate</td><td class="pass">Less than 5% voltage drop per hour at rest</td><td class="fail">Measurable drop within 10 minutes</td><td>Rapid self-discharge indicates leaky capacitor(s) — test each cell individually, replace any with dielectric leakage resistance below 1MΩ.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION II — TURNTABLE MECHANICS
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section II</div>
+    <h2>Turntable <em>Mechanics</em></h2>
+  </div>
+
+  <!-- CAL-T01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-T01</div>
+      <div class="test-title">Magnetic Bearing Float Height and Field Check</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the platter floats at the correct height and that the mu-metal shielding reduces the bearing field to a safe level at cartridge position. This test must be completed before the tonearm or cartridge is installed.</p>
+      <ul class="equip-list">
+        <li>Feeler gauge set (0.1mm increments)</li>
+        <li>Calibrated gaussmeter (±0.1µT resolution)</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Install platter on bearing without tonearm. Place feeler gauge between platter underside and plinth upper surface. Record float height at four points 90° apart. Then mount gaussmeter probe at the position where the cartridge body would sit when arm is in play position. Record field strength.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Float height</td><td class="pass">1.2–1.8mm at all four measurement points, variation less than 0.3mm</td><td class="fail">Below 1.0mm or above 2.2mm. Or variation >0.5mm between points.</td><td>Too low: bearing ring spacing too large — check ring geometry. Too high: spacing too small. Uneven: bearing ring not perpendicular to platter axis — check bonding.</td></tr>
+        <tr><td>Field at cartridge position</td><td class="pass">Below 5µT with mu-metal ring installed</td><td class="fail">Above 5µT</td><td>Add second mu-metal ring layer and re-anneal. Verify the ring was annealed after forming — unnannealed mu-metal will not shield effectively. Measure again after adding second layer.</td></tr>
+        <tr><td>Platter rotation</td><td class="pass">Spins freely with no audible or tactile contact between platter underside and plinth. Spins for at least 60 seconds from a single push.</td><td class="fail">Audible scraping, rough feel, or stops within 20 seconds.</td><td>Bearing friction: check ceramic shaft for damage. Check that upper bearing ring is bonded perpendicular to platter axis. Check float height first.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Feels Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">Spinning the platter by hand feels almost frictionless — like a gyroscope. There should be a very slight resistance as the bearing magnet field produces a restoring force when displaced laterally, but axial spin should feel completely free. If you feel any roughness or periodic resistance, something is contacting.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">A passing platter makes no audible sound during rotation at any speed. A finger snap near the spinning platter should produce no sympathetic resonance in the platter — it should be acoustically inert.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-T02 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-T02</div>
+      <div class="test-title">Spring Motor Run Time and Torque Consistency</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the remontoire spring motor delivers consistent speed across its full wind range and achieves the specified run time. Run this test before the motor is installed in the plinth — it is much easier to adjust the motor on the bench than in-situ. This test also confirms the maintaining power spring is functioning correctly.</p>
+      <ul class="equip-list">
+        <li>Stopwatch</li>
+        <li>Stroboscope disc (33⅓ RPM reference marks)</li>
+        <li>Representative load disc (same mass as platter — substitute a balanced disc of equivalent inertia)</li>
+        <li>Tachometer or optical RPM meter</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Mount motor on bench test fixture with representative load disc. Wind fully (40 turns). Start timing. Record RPM every 2 minutes using stroboscope or tachometer. Continue until RPM drops below 32 RPM. Record total run time. During the test, at the 12-minute mark, simulate mid-play winding: wind the crank 10 turns and verify the load disc does not hesitate during winding.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>RPM stability over run</td><td class="pass">Target RPM ±2% throughout full wind range</td><td class="fail">Speed drift >5% between full and half-wound states</td><td>Remontoire not functioning correctly — the secondary spring should decouple the platter from mainspring tension variation. Return to clockmaker for adjustment.</td></tr>
+        <tr><td>Run time per full wind</td><td class="pass">23 minutes or more</td><td class="fail">Below 20 minutes</td><td>Motor energy output below design. Discuss with clockmaker — may require larger mainspring or adjusted gear ratio.</td></tr>
+        <tr><td>Maintaining power during winding</td><td class="pass">Load disc does not slow or hesitate during 10-turn mid-play wind. Speed variation during winding: less than ±1 RPM.</td><td class="fail">Disc visibly slows or stops during winding.</td><td>Maintaining power spring not functioning. Return to clockmaker.</td></tr>
+        <tr><td>Run-to-run consistency</td><td class="pass">3 consecutive run times within 90 seconds of each other</td><td class="fail">Run times vary by more than 3 minutes between winds</td><td>Inconsistency suggests spring set or ratchet issue — report to clockmaker.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Sounds Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">At correct operating speed you will hear a faint, regular tick every 8–10 seconds — the remontoire ratchet re-engaging as it rewinds the secondary spring from the main spring. This is normal and expected. It should be quiet — if the tick is loud or irregular, the remontoire mechanism needs adjustment.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">Winding the crank should feel progressively stiffer as the spring winds — smooth and consistent resistance, like winding a good quality mechanical watch. No sudden catches or releases. The crank should freewheel silently in the reverse direction.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-T03 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-T03</div>
+      <div class="test-title">Speed Calibration — Eddy Current Governor and PLL</div>
+      <div class="test-stage"><span class="stage-badge stage-integration">Integration</span></div>
+    </div>
+    <div class="test-body">
+      <p>Sets and verifies the turntable speed at each of the three speed positions. The eddy current governor is adjusted first to set approximate speed, then the PLL locks to the quartz reference for final accuracy. This calibration is done once at installation and should hold indefinitely unless the horseshoe magnet is disturbed.</p>
+      <ul class="equip-list">
+        <li>Stroboscope disc with 33⅓ / 45 / 78 RPM reference marks</li>
+        <li>Mains frequency reference (50Hz or 60Hz depending on location) — OR quartz-referenced strobe lamp</li>
+        <li>Wow and flutter meter — or test record with 3kHz tone + spectrum analyser</li>
+        <li>Small hex key for horseshoe magnet grub screw</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Wind motor and set speed selector to 33⅓. Place stroboscope disc on platter. Illuminate with strobe lamp at mains frequency. Observe reference marks — if they drift forward, speed is fast; backward, speed is slow. Adjust horseshoe magnet proximity: closer to copper disc = more braking = slower. When marks appear stationary, lock grub screw. Enable PLL. Verify PLL locks within 5 seconds. Measure wow and flutter. Repeat for 45 and 78 RPM positions.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Speed accuracy (all three positions)</td><td class="pass">Stroboscope marks stationary or drifting less than one mark width per 10 seconds</td><td class="fail">Rapid drift in either direction</td><td>Re-adjust horseshoe magnet proximity. If cannot achieve correct speed at any magnet position, check stepped pulley diameter calculation — may need remachining.</td></tr>
+        <tr><td>PLL lock time</td><td class="pass">PLL locks within 5 seconds of reaching approximate target speed</td><td class="fail">PLL does not lock or unlocks during run</td><td>Check speed sensor signal — verify Hall effect or optical sensor is receiving clean signal from platter reference marks. Check PLL circuit power supply. Check crystal oscillator frequency.</td></tr>
+        <tr><td>Wow and flutter (with PLL)</td><td class="pass">Below 0.05% WRMS</td><td class="fail">Above 0.1% WRMS</td><td>Check belt for wear or contamination. Check spring motor torque consistency (CAL-T02). Check isolation platform resonance — platform may be coupling mechanical disturbance to platter.</td></tr>
+        <tr><td>Wow and flutter (tuning fork, if PLL not used)</td><td class="pass">Below 0.15% WRMS</td><td class="fail">Above 0.2% WRMS</td><td>Check tuning fork mechanism — fork may need cleaning or re-tensioning. Verify belt tension.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Looks Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sight</span><span class="sensory-desc">At correct speed with a stroboscope reference, the pattern on the strobe disc appears to stand completely still — like a photograph. Any perceptible drift indicates speed error. This is one of the most satisfying moments in the build: a perfectly still strobe pattern on a mechanism powered entirely by a spring.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-T04 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-T04</div>
+      <div class="test-title">Isolation Platform Resonance Verification</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the isolation platform is tuned to the correct resonant frequency with the full turntable load in place. The target is 1.5Hz — well below any audio frequency and low enough to provide effective acoustic isolation from the horn speaker.</p>
+      <ul class="equip-list">
+        <li>Stopwatch or metronome app</li>
+        <li>A light finger — no instruments required</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>With turntable fully assembled and resting on the isolation platform, gently press down on the plinth with one finger and release — just enough to start the platform oscillating vertically. Count complete oscillations over 10 seconds. Divide 10 by the count to get the period in seconds, then calculate frequency: f = 1/period.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Resonant frequency</td><td class="pass">1.2–1.8Hz (14–18 oscillations per 10 seconds)</td><td class="fail">Above 2.5Hz or below 0.8Hz</td><td>Too high (stiff): springs too stiff for the load — replace with softer springs. Too low (bouncy): springs too soft — replace with stiffer springs. Recalculate spring rate from measured total mass and reorder if needed.</td></tr>
+        <tr><td>Damping</td><td class="pass">Oscillation damps to imperceptible within 4–5 cycles</td><td class="fail">Oscillation continues for more than 8 cycles</td><td>Insufficient damping — add sorbothane between plinth base and slate slab. The constrained-layer damping element (EAR Isodamp) in the platform stack should provide adequate damping if correctly bonded.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Feels Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">Press and release: the platform bounces slowly and lazily, like a waterbed in slow motion. Not springy — more like a gentle floating. It should feel almost too slow. That is correct. If it bounces with any energy at all, it is damping out environmental vibration rather than transmitting it. The oscillation should fade within 3–4 seconds. If you can feel the platform responding to footsteps on the floor, it is working — the platform is moving gently so the platter does not have to.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION III — SIGNAL CHAIN
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section III</div>
+    <h2>Signal <em>Chain</em></h2>
+  </div>
+
+  <!-- CAL-S01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-S01</div>
+      <div class="test-title">Phono Stage — Heater and Anode Voltages</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Electrical commissioning of the phono stage before any audio signal is applied. Performed by the qualified technician. Establishes that all valves are operating in their correct working region.</p>
+      <ul class="equip-list">
+        <li>DC voltmeter (precision, ±0.1V resolution)</li>
+        <li>Milliammeter or current-measuring multimeter</li>
+        <li>Oscilloscope (optional but useful)</li>
+      </ul>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Heater voltage — all valves</td><td class="pass">6.3V DC ±5% (5.99–6.62V)</td><td class="fail">Outside ±10% (below 5.67V or above 6.93V)</td><td>Adjust heater supply regulator or dropping resistor. Do not operate valves with incorrect heater voltage — too low degrades emission; too high shortens valve life.</td></tr>
+        <tr><td>Anode voltage — all stages</td><td class="pass">Within ±10% of design target (150–200V typical)</td><td class="fail">More than 20% from design target</td><td>Check dropping resistor calculation from 600V rail. Measure rail voltage — confirm capacitor bank at correct charge level. Measure actual dropping resistor values — 1% tolerance components occasionally measure outside spec.</td></tr>
+        <tr><td>Quiescent current — all stages</td><td class="pass">1.0–1.5mA per stage</td><td class="fail">Below 0.5mA or above 2.5mA</td><td>Outside range: adjust cathode resistor value. Below 0.5mA may indicate weak or failing valve — swap with spare and re-measure.</td></tr>
+        <tr><td>Oscillation check</td><td class="pass">No signal on oscilloscope output with input shorted</td><td class="fail">Any periodic waveform at output</td><td>Oscillation indicates stability problem — check output stage loading, output transformer connection, and stray capacitance from output back to input. Add grid-stopper resistors (1kΩ) at valve grid pins if oscillation persists.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Looks Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sight</span><span class="sensory-desc">After 60–90 seconds warm-up, the valve envelopes glow a faint orange-red — warm but not white. The glow should be even across all four valves. A valve glowing significantly brighter than the others is drawing too much current. A valve showing no glow at all is not operating.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Touch</span><span class="sensory-desc">After 5 minutes of operation, the valve envelopes will be hot — 180–220°C surface temperature. Do not touch. The chassis should be warm but comfortable to hold. Anything uncomfortably hot indicates a component dissipating more power than expected — find and investigate before continuing.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-S02 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-S02</div>
+      <div class="test-title">RIAA Frequency Response</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the RIAA equalisation curve is correctly implemented. Incorrect RIAA sounds immediately wrong — thin, bright, and bass-free. This test must pass before any vinyl playback tests.</p>
+      <ul class="equip-list">
+        <li>Audio signal generator (20Hz–20kHz)</li>
+        <li>AC voltmeter or audio analyser</li>
+        <li>Test signal injected at SUT output / V1 input (bypass SUT for this test)</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Inject a swept sine wave at constant amplitude from 20Hz to 20kHz at the phono stage input (post-SUT). Measure output level at 10 frequency points: 20Hz, 50Hz, 100Hz, 200Hz, 500Hz, 1kHz, 2kHz, 5kHz, 10kHz, 20kHz. Compare to RIAA standard curve — at 1kHz as reference (0dB), the output should follow the inverse RIAA curve: approximately +20dB at 20Hz and −20dB at 20kHz relative to 1kHz.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>RIAA deviation from standard</td><td class="pass">Within ±0.5dB of standard RIAA curve at all 10 test frequencies</td><td class="fail">Any point more than 1.5dB from standard</td><td>Measure each RIAA resistor and capacitor with precision meter — components sometimes measure outside stated tolerance. Replace out-of-spec components. Verify time constants: 3180µs / 318µs / 75µs.</td></tr>
+        <tr><td>Channel matching</td><td class="pass">Channels A and B within ±0.5dB at all frequencies</td><td class="fail">Channels differ by more than 1dB at any frequency</td><td>Measure component values in both channels and find the discrepant element. Matched pairs (0.1% tolerance components) typically produce better channel matching than measuring guarantees.</td></tr>
+        <tr><td>Total gain at 1kHz</td><td class="pass">Approximately 58dB (±3dB)</td><td class="fail">Below 50dB or above 65dB</td><td>Total gain depends on valve operating point and stage loading. Re-measure anode voltage — lower anode voltage reduces gain. Check for unexpected loading on the output stage.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CAL-S03 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-S03</div>
+      <div class="test-title">Noise Floor Measurement</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the system noise floor is below the noise floor of the vinyl groove. The benchmark is simple: the electronics should be quieter than the record. Through a 110dB horn system, any excess noise will be clearly audible.</p>
+      <ul class="equip-list">
+        <li>SUT primary input shorted with a short-circuit plug</li>
+        <li>Precision audio voltmeter with A-weighting filter, or spectrum analyser</li>
+        <li>Oscilloscope (useful for identifying noise character)</li>
+      </ul>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Equivalent input noise (A-weighted)</td><td class="pass">Below 0.1µV referred to input (estimated). Subjectively: no audible hiss from horn at 1m with input shorted.</td><td class="fail">Audible hiss from horn at 1m with input shorted</td><td>Primary suspect: V1 valve selection. Try different 12AX7 specimens — noise varies significantly between examples of the same type. Secondary suspect: heater supply ripple coupling to cathode circuit. Verify DC heater supply is clean.</td></tr>
+        <tr><td>Hum (50Hz or 60Hz)</td><td class="pass">No audible hum from horn at 1m</td><td class="fail">Audible hum at mains frequency</td><td>Hum sources in order of likelihood: (1) heater supply not DC or poorly filtered — check heater regulator; (2) field coil supply ripple — check field coil dropping resistor and supply filtering; (3) magnetic bearing interference — verify mu-metal shielding and gaussmeter reading from CAL-T01; (4) generator EMI — verify generator shielding and 800mm minimum distance from cartridge.</td></tr>
+        <tr><td>Periodic noise correlated with platter rotation</td><td class="pass">No audible periodic noise correlated to platter rotation</td><td class="fail">Low-frequency periodic hum at rotation frequency or harmonics</td><td>Generator EMI coupling to cartridge. Verify generator-to-cartridge distance ≥800mm. Verify mu-metal generator shield is installed and correctly earthed. Check platter bearing field (CAL-T01) — may need additional mu-metal layer.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CAL-S04 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-S04</div>
+      <div class="test-title">Crossfader Equal-Power Law Verification</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies the crossfader transition curve is correct. At centre position, both channels should be at −3dB — the equal-power law for a clean blend. If the centre position produces a level dip (below −3dB), blends will sound quiet at the halfway point. If it produces a peak (above −3dB), blends will be louder than either source alone — disorienting in performance.</p>
+      <ul class="equip-list">
+        <li>Audio signal generator — 1kHz sine wave</li>
+        <li>AC voltmeter or audio level meter</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Apply 1kHz test tone to Channel A only. Measure output level with crossfader fully to Channel A (reference = 0dB). Move crossfader to centre. Measure output level — should be −3dB. Move to fully Channel B — should be −∞ (no signal). Then apply tone to Channel B and repeat.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Level at centre crossfader position</td><td class="pass">−3dB ±1dB relative to full-open position</td><td class="fail">More than 2dB from −3dB</td><td>Adjust complementary TVC winding ratio or bellcrank geometry. The equal-power law is a function of the TVC impedance at each position. If custom wound, discuss with the winder.</td></tr>
+        <tr><td>Channel isolation at full crossfade</td><td class="pass">More than 50dB isolation — faded channel inaudible at full volume</td><td class="fail">Bleed audible through horn at performance volume</td><td>Improve shielding between TVC windings. Ensure mu-metal partition between channels in the crossfader housing. Check wiring routing — input and output wiring from different channels should not run parallel for more than 50mm.</td></tr>
+        <tr><td>Mechanical feel — centre detent</td><td class="pass">Positive tactile centre detent. Smooth travel either side with consistent resistance. No stiction.</td><td class="fail">Stiction, rough spots, or no centre detent</td><td>Adjust bellcrank and lever geometry. The centre detent is a mechanical feature — check spring-loaded ball in detent position. Stiction suggests bearing or pivot friction — check crossfader pivot mechanism.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Feels Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">Moving the crossfader from end to end should feel like drawing a bow across a cello string — smooth, consistent resistance with a satisfying click at centre. No dead zones, no sticky patches. The 200mm travel allows fine control. At the ends, the lever should arrive at a physical stop cleanly, without bounce.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION IV — SPEAKERS
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section IV</div>
+    <h2>Field Coil <em>Speakers</em></h2>
+  </div>
+
+  <!-- CAL-SP01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-SP01</div>
+      <div class="test-title">Field Coil Current Verification</div>
+      <div class="test-stage"><span class="stage-badge stage-subsystem">Subsystem</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies each field coil is drawing the correct current from the capacitor bank. Too little current produces a weak magnetic field and low sensitivity. Too much current risks overheating the field coil winding.</p>
+      <ul class="equip-list">
+        <li>DC milliammeter (0–50mA range) in series with field coil supply</li>
+        <li>DC voltmeter across field coil terminals</li>
+      </ul>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Field coil current — compression drivers</td><td class="pass">20–30mA DC</td><td class="fail">Below 15mA or above 35mA</td><td>Adjust dropping resistor value to achieve target current. Current = (supply voltage − field coil voltage) ÷ dropping resistor. Measure actual field coil DCR and supply voltage to calculate correct dropping resistor.</td></tr>
+        <tr><td>Field coil current — woofer</td><td class="pass">20–30mA DC (confirm with speaker builder's specification)</td><td class="fail">Differs significantly from builder specification</td><td>Same as above. Confirm field coil DCR with the speaker builder — custom-wound coils may differ from generic estimates.</td></tr>
+        <tr><td>Hum bucking coil effectiveness</td><td class="pass">No audible 50/60Hz hum from drivers with input shorted</td><td class="fail">Audible hum from driver</td><td>Hum bucking coil may need reorientation — consult with speaker builder. Alternatively, improve supply filtering with additional capacitance on the field coil supply rail.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CAL-SP02 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-SP02</div>
+      <div class="test-title">Driver Polarity and Horn Loading Verification</div>
+      <div class="test-stage"><span class="stage-badge stage-integration">Integration</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies both drivers are in phase with each other and loaded correctly by the horn. Out-of-phase drivers produce a dull, phasey sound with a collapsed centre image. A driver not correctly mated to the horn throat will sound distorted at high levels.</p>
+      <ul class="equip-list">
+        <li>Audio signal generator — 200Hz sine wave</li>
+        <li>Calibrated sound level meter</li>
+      </ul>
+      <h4>Procedure</h4>
+      <p>Apply 200Hz test tone. With one driver only, note SPL at 1m. Connect second driver. SPL should increase by 6dB if drivers are in phase. If SPL decreases or stays the same, one driver is wired out of phase — reverse its voice coil connections and re-measure.</p>
+      <table class="pf-table">
+        <tr><th>Measurement</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Driver phase</td><td class="pass">Adding second driver increases SPL by 4–6dB at 200Hz</td><td class="fail">SPL decreases or increases by less than 2dB</td><td>Reverse voice coil connections on one driver. Polarity can be inconsistent even between matched pairs from the same manufacturer.</td></tr>
+        <tr><td>Horn loading — no distortion at high level</td><td class="pass">No audible distortion at full system volume on sustained 1kHz tone. Driver does not bottom out or produce mechanical noise.</td><td class="fail">Distortion, buzzing, or mechanical noise from driver at high levels</td><td>Check driver-to-horn throat coupling — mating surfaces must be airtight. Check driver for mechanical damage. Reduce field coil current by 5mA and re-test if distortion persists at correct current.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What Pass Sounds Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">A 1kHz tone through a correctly loaded horn compression driver should sound clean, focused, and effortless at any level — like a human voice projected clearly across a large room. There should be no sense of strain. The sound should appear to come from the horn mouth, not from the driver body. If you can hear the driver location distinctly from the horn mouth, the acoustic loading is not working correctly.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION V — FULL SYSTEM
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section V</div>
+    <h2>Full <em>System</em></h2>
+  </div>
+
+  <!-- CAL-FS01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-FS01</div>
+      <div class="test-title">First Vinyl Playback</div>
+      <div class="test-stage"><span class="stage-badge stage-full-system">Full System</span></div>
+    </div>
+    <div class="test-body">
+      <p>The first time a record plays through the complete instrument. Use a well-known, well-pressed record you know intimately — a record you can recognise as sounding right. Do not use a brand new record or an unfamiliar pressing for this test. Start at low volume and increase gradually.</p>
+      <ul class="equip-list">
+        <li>A known, well-pressed vinyl record (45 RPM single recommended for first test — shorter, less spring winding)</li>
+        <li>Strobe disc for speed verification during playback</li>
+        <li>Calibrated tracking force gauge</li>
+      </ul>
+      <h4>Pre-playback checks</h4>
+      <p>Verify tracking force is set correctly for the cartridge (see cartridge manufacturer's specification). Verify anti-skating is set. Verify tonearm is level. Verify field coil current is at correct level. Verify capacitor bank is charged to operating voltage. Verify phono stage has completed warm-up (90 seconds minimum).</p>
+      <table class="pf-table">
+        <tr><th>Test</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Tonal balance</td><td class="pass">Bass, midrange, and treble sound correctly proportioned. The record sounds as expected — recognisable.</td><td class="fail">Thin and bright (no bass) — or thick and dull (no treble)</td><td>Thin and bright: RIAA network issue — re-run CAL-S02. Thick and dull: RIAA time constants wrong, or SUT impedance mismatch — check SUT specification vs. cartridge output impedance.</td></tr>
+        <tr><td>Speed accuracy during playback</td><td class="pass">Pitch of music sounds correct. Stroboscope disc confirms speed. No audible pitch drift across the side.</td><td class="fail">Music sounds flat or sharp. Speed drifts during playback.</td><td>Pitch errors: re-run CAL-T03 speed calibration. Speed drift during playback: spring motor losing speed faster than expected under loaded conditions — may need remontoire adjustment.</td></tr>
+        <tr><td>Acoustic feedback</td><td class="pass">No howl or feedback at any volume below full. System can be played at full performance volume without feedback.</td><td class="fail">Howl or sustained feedback at any volume</td><td>Check isolation platform resonant frequency (CAL-T04). Ensure plinth is not in contact with floor or any surface that conducts acoustic energy. Add additional isolation if needed. Feedback below 100Hz suggests inadequate bass isolation.</td></tr>
+        <tr><td>Noise floor during quiet passages</td><td class="pass">In quiet passages between notes, only the record's own surface noise is audible — no electronic hiss or hum above the groove noise.</td><td class="fail">Electronic noise audible above groove noise in quiet passages</td><td>Re-run CAL-S03 noise floor test. Most likely cause: valve selection (try quieter V1 candidates).</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">What a Passing First Playback Sounds Like</div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">The sound will be immediately distinguishable from a conventional hi-fi system. The presence of the music — the sense that performers are in the room rather than recorded — is the defining characteristic of a well-set-up high-efficiency horn system with valve amplification. Transients (drum strikes, piano attacks, brass stabs) will arrive with a physical directness that is surprising at first. The bass will be felt as well as heard if the room is suitable. This is not flattery — these are documented characteristics of this class of system. If the sound is merely good in a conventional sense, something is still not quite right.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">At concert volume (100dB+), the bass should be physically felt in the chest and stomach. Sub-bass content in electronic music (below 60Hz) will produce room pressure that is perceptible before it is audible. This is normal for a corner-loaded horn system of this size and is one of the defining experiences of the instrument.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAL-FS02 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-FS02</div>
+      <div class="test-title">Two-Channel Mix Test</div>
+      <div class="test-stage"><span class="stage-badge stage-full-system">Full System</span></div>
+    </div>
+    <div class="test-body">
+      <p>Verifies both channels work correctly together and that the crossfader blend sounds natural. Requires two records playing simultaneously.</p>
+      <table class="pf-table">
+        <tr><th>Test</th><th>Pass</th><th>Fail</th><th>If Fail</th></tr>
+        <tr><td>Channel balance</td><td class="pass">Both channels sound matched in level and tonal quality at the same volume control position</td><td class="fail">One channel noticeably louder or tonally different</td><td>Re-measure phono stage gain for both channels (CAL-S02). Check SUT ratio — both units should be matched. Check TVC tracking — both channel volume controls should track equally through their range.</td></tr>
+        <tr><td>Crossfader blend quality</td><td class="pass">Blending two records sounds natural — no level dip, no tonal change at centre position</td><td class="fail">Level dip at centre crossfader position, or tonal change during blend</td><td>Re-run CAL-S04. Level dip at centre means equal-power law is not correct. Tonal change suggests impedance interaction between the two TVCs — consult crossfader TVC specification.</td></tr>
+        <tr><td>Channel isolation</td><td class="pass">With crossfader fully to one channel, the other record is inaudible</td><td class="fail">Faded record audible as bleed</td><td>Re-run CAL-S04 channel isolation measurement. Improve TVC shielding.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION VI — PERFORMANCE READINESS
+  ════════════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-break-label">Section VI</div>
+    <h2>Performance <em>Readiness Check</em></h2>
+  </div>
+
+  <p>Run this checklist before every performance. It takes approximately 15 minutes. If any item fails, the instrument is not ready and the issue must be resolved before starting.</p>
+
+  <!-- CAL-PR01 -->
+  <div class="test-block">
+    <div class="test-header">
+      <div class="test-id">CAL-PR01</div>
+      <div class="test-title">Pre-Performance Checklist</div>
+      <div class="test-stage"><span class="stage-badge stage-performance">Performance</span></div>
+    </div>
+    <div class="test-body">
+      <table class="pf-table">
+        <tr><th>Item</th><th>Action</th><th>Pass</th></tr>
+        <tr><td>Capacitor bank charge</td><td>Crank to full charge. Observe voltage gauge.</td><td class="pass">Bank at 550–600V before starting</td></tr>
+        <tr><td>Valve warm-up</td><td>Power phono stage. Wait for warm-up indicator to clear.</td><td class="pass">Warm-up indicator shows Ready (90 seconds minimum)</td></tr>
+        <tr><td>Field coil current</td><td>Verify milliammeter reading on field coil supply rail.</td><td class="pass">20–30mA on all drivers</td></tr>
+        <tr><td>Stylus condition</td><td>Inspect stylus tip under magnification or loupe.</td><td class="pass">Tip clean, no visible damage or contamination. Use new or freshly cleaned stylus for any set longer than 2 hours.</td></tr>
+        <tr><td>Headshell contacts</td><td>Apply DeOxit Gold to all headshell contact pins. Wipe excess.</td><td class="pass">All pins bright, no discolouration</td></tr>
+        <tr><td>Tracking force</td><td>Set with digital gauge on each active headshell.</td><td class="pass">Within cartridge manufacturer's recommended range ±0.1g</td></tr>
+        <tr><td>Tonearm level</td><td>Check tonearm parallel to record surface with arm in play position.</td><td class="pass">Arm tube level within ±2° of horizontal</td></tr>
+        <tr><td>Spring motors</td><td>Wind both motors fully (40 turns each).</td><td class="pass">Both motors fully wound and confirmed by crank resistance increasing near end of wind</td></tr>
+        <tr><td>Speed verification</td><td>Spin platter, apply strobe disc, verify with strobe lamp.</td><td class="pass">33⅓ RPM confirmed — stroboscope marks stationary</td></tr>
+        <tr><td>Noise floor check</td><td>Play a blank groove at full performance volume. Listen for 30 seconds.</td><td class="pass">Only groove surface noise audible — no hum, no hiss above surface noise</td></tr>
+        <tr><td>Isolation platform</td><td>Gently press and release plinth. Observe bounce.</td><td class="pass">Slow oscillation, damps within 4 cycles</td></tr>
+        <tr><td>Spare headshells</td><td>Count pre-aligned spares in storage rack.</td><td class="pass">Minimum 4 spare headshells per turntable — 8 total — ready for immediate deployment</td></tr>
+        <tr><td>Capacitor bank voltage (Option C)</td><td>If Option C: pre-charge air cylinder. Verify cylinder pressure gauge.</td><td class="pass">Cylinder at operating pressure per actuator specification</td></tr>
+        <tr><td>Option D cable (if fitted)</td><td>Connect audience unit cable. Verify connection secure.</td><td class="pass">LED on audience unit (if fitted) confirms connected. Cable routed safely, cable ramps in place at floor crossings.</td></tr>
+      </table>
+      <div class="sensory-box">
+        <div class="sensory-label">The Instrument is Ready When</div>
+        <div class="sensory-row"><span class="sensory-sense">Sound</span><span class="sensory-desc">Playing a blank groove at full volume produces only the gentle shush of the stylus in the groove — the characteristic sound of vinyl surface noise, nothing else. No hum. No hiss. No mechanical noise. The silence between the sound is as important as the sound itself.</span></div>
+        <div class="sensory-row"><span class="sensory-sense">Feel</span><span class="sensory-desc">The crank turns smoothly, the platters float freely, the crossfader slides cleanly. Everything has the feel of a precision instrument that is in proper order. If anything feels rough, sticky, loose, or wrong in any way — investigate before starting. The instrument will tell you when something needs attention.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="brass-rule">
+
+  <div class="callout good">
+    <div class="callout-label">Document Your Results</div>
+    <p>Every measurement you take during commissioning is information that does not yet exist in this project's record. Please document your results in the Builder's Report (VCE-BRT-001). Which pass criteria held exactly as stated? Which needed adjustment? What threshold produced the best subjective result? Your data will update the certainty labels in this document — moving figures from Estimated to Confirmed for every builder who follows.</p>
+  </div>
+
+</div><!-- /body-content -->
+
+<div class="doc-footer">
+  <div><div class="footer-label">Instrument</div><div class="footer-value">Volta Confluence Engine<br>Human-Powered Two-Channel<br>Phonograph Mixer</div></div>
+  <div><div class="footer-label">Document</div><div class="footer-value">Calibration &amp; Testing Procedures<br>VCE-CAL-001 · Revision 1.0<br>2025</div></div>
+  <div><div class="footer-label">Licence</div><div class="footer-value">Creative Commons<br>Attribution Non-Commercial<br>CC BY-NC</div></div>
+  <div><div class="footer-label">Provenance</div><div class="footer-value">Concept: Jake Galm, c. 2010<br>Named for Alessandro Volta<br>No wall connection · No batteries</div></div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
