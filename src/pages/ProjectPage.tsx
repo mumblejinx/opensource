@@ -68,7 +68,7 @@ export default function ProjectPage() {
   to="/opensource/"
   className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
 >
-  <ArrowLeft size={14} /> RETURN TO GALLERY
+  <ArrowLeft size={14} /> BACK TO ART
 </Link>
         
       </div>
@@ -95,7 +95,7 @@ export default function ProjectPage() {
   to="/opensource/"
   className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
 >
-  <ArrowLeft size={14} /> RETURN TO GALLERY
+  <ArrowLeft size={14} /> BACK TO ART
 </Link>
         </div>
       </nav>

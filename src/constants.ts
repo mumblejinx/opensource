@@ -75,7 +75,7 @@ export const ARTWORKS: Artwork[] = [
       {
         label: "Chase the Queen sheet",
         pdfFilename: "chasetq-sheet.pdf",
-        pngFilename: "chasetq-sheet.png",
+        pngFilename: "chasetqs-sheet.png", // archive.org's PNG for this file kept the old typo'd name
         preview: `${BASE}seattle-stickers/chasetq-sheet.jpg`
       },
       {
@@ -196,7 +196,7 @@ export const ARTWORKS: Artwork[] = [
         label: "Storm",
         pdfFilename: "storm.pdf",
         pngFilename: "storm.png",
-        preview: `${BASE}super-sheros/storm.jpg`
+        preview: `${BASE}super-sheroes/storm.jpg`
       },
       {
         label: "Jean Grey",
@@ -208,7 +208,7 @@ export const ARTWORKS: Artwork[] = [
         label: "Super Sheroes Sticker Sheet",
         pdfFilename: "supersheroessheet.pdf",
         pngFilename: "supersheroessheet.png",
-        preview: `${BASE}supersheroes/supersheroessheet.jpg`
+        preview: `${BASE}super-sheroes/supersheroessheet.jpg`
       },
       {
         label: "Angelica Jones",
@@ -221,7 +221,7 @@ export const ARTWORKS: Artwork[] = [
         label: "Angelica Jones Coloring Page",
         pdfFilename: "angelica_jones-clean.pdf",
         pngFilename: "angelica_jones-clean.png",
-        preview: `${BASE}supersheroes/angelica_jones-clean.jpg`
+        preview: `${BASE}super-sheroes/angelica_jones-clean.jpg`
       }
     ],
     zips: [
@@ -291,11 +291,10 @@ export const ARTWORKS: Artwork[] = [
         label: "Stick or Treat inverted Sheet",
         pdfFilename: "stickortreati-sheet.pdf",
         pngFilename: "stickortreati-sheet.png",
-        preview: `${BASE}manic-art/manic-art02-clean.jpg`
+        preview: `${BASE}stickortreat/stickortreati-sheet.jpg`
       }
     ],
     zips: [
-      { label: "PDF Bundle", filename: "stickortreat-pdfs.zip" },
       { label: "PNG Bundle", filename: "stickortreat-pngs.zip" }
     ]
   },

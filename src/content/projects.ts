@@ -12,6 +12,13 @@ export const PROJECTS: ContentEntry[] = [
       '電気を必要としないDJミキサー — 人力で駆動する二チャンネル・フォノグラフ・ミキサーの構想。まだ一度も作られていない機械の、完全な設計図と資料として提示される概念芸術プロジェクト。',
     image: `${BASE}projects/vce/cover.jpg`,
     liveUrl: `${BASE}projects/vce/`,
+    downloads: [
+      { label: 'Complete Build — Manufacturer’s Reference (PDF)', pdfFilename: 'volta-confluence-engine-complete.pdf' },
+      { label: 'Scientific Paper (PDF)', pdfFilename: 'vce-scientific-paper.pdf' },
+      { label: "Engineer's Quick Check (PDF)", pdfFilename: 'vce-engineers-quick-check.pdf' },
+      { label: 'Machining Instructions (PDF)', pdfFilename: 'vce-machining-instructions.pdf' },
+      { label: 'Calibration & Testing Procedures (PDF)', pdfFilename: 'vce-calibration-testing.pdf' },
+    ],
     tags: ['conceptual', 'design', 'sound'],
     version: '2026',
     license: 'Creative Commons Attribution–NonCommercial (CC BY-NC). Personal and non-profit use.',

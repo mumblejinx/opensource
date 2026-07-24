@@ -108,9 +108,13 @@ p { color: var(--ink2); margin-bottom: 16px; font-size: 0.95rem; }
 .pf-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 16px 0; }
 .pf-table th { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 7px 12px; text-align: left; border-bottom: 2px solid var(--brass); background: rgba(160,120,40,0.04); color: var(--brass); }
 .pf-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink2); }
-.pf-table td:first-child { font-family: 'Courier Prime', monospace; font-size: 0.78rem; color: var(--ink); white-space: nowrap; background: rgba(160,120,40,0.02); }
-.pf-table td.pass { color: var(--verdigris); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
-.pf-table td.fail { color: var(--crimson); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.pf-table td:first-child { font-family: 'Courier Prime', monospace; font-size: 0.78rem; color: var(--ink); background: rgba(160,120,40,0.02); }
+.pf-table { table-layout: fixed; }
+.pf-table th:nth-child(1), .pf-table td:nth-child(1) { width: 16%; }
+.pf-table th:nth-child(2), .pf-table td:nth-child(2) { width: 20%; }
+.pf-table th:nth-child(3), .pf-table td:nth-child(3) { width: 18%; }
+.pf-table td.pass { color: var(--verdigris); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.pf-table td.fail { color: var(--crimson); font-weight: bold; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .pf-table tr:last-child td { border-bottom: none; }
 
 /* SENSORY BOX */
@@ -157,7 +161,6 @@ p { color: var(--ink2); margin-bottom: 16px; font-size: 0.95rem; }
   <a class="vce-topnav__link" href="./vce-custom-parts-register.html">Parts&nbsp;Register</a>
   <a class="vce-topnav__link" href="./vce-machining-instructions.html">Machining</a>
   <a class="vce-topnav__link is-current" href="./vce-calibration-testing.html">Calibration</a>
-  <a class="vce-topnav__link" href="./vce-builders-report.html">Builder's&nbsp;Report</a>
   <span class="vce-topnav__sep"></span>
   <a class="vce-topnav__link is-out" href="https://mumblejinx.github.io/opensource/">Open&nbsp;Source</a>
   <a class="vce-topnav__link is-out" href="https://jakegalm.com">JakeGalm.com</a>

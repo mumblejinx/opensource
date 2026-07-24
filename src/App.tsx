@@ -38,7 +38,7 @@ function HomePage() {
               href="https://jakegalm.com"
               className="text-xs font-bold bg-[#8bc34a] text-black px-4 py-2 hover:bg-white transition-all flex items-center gap-2 tracking-tighter"
             >
-              MAIN SITE <ExternalLink size={14} />
+              JakeGalm.com <ExternalLink size={14} />
             </a>
           </div>
         </div>

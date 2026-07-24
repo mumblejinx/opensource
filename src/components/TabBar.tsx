@@ -10,7 +10,7 @@ const TABS: { key: Tab; label: string; to: string }[] = [
 
 export default function TabBar({ active }: { active: Tab }) {
   return (
-    <div className="border-b border-[#222222] bg-[#0a0a0a]">
+    <div className="sticky top-20 z-40 border-b border-[#222222] bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-6 flex gap-1 sm:gap-2">
         {TABS.map((tab) => {
           const isActive = tab.key === active;

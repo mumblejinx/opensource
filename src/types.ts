@@ -2,27 +2,7 @@ const BASE = import.meta.env.BASE_URL;
 
 // ─── Art (existing — unchanged) ──────────────────────────────────────────────
 
-export interface ArtworkFile {
-  label: string;
-  pdfFilename: string;
-  pngFilename: string;
-  preview?: string;
-}
-
-export interface ArtworkZip {
-  label: string;
-  filename: string;
-}
-
-export interface Artwork {
-  id: string;
-  title: string;
-  description: string;
-  descriptionJp: string;
-  image: string;
-  files: ArtworkFile[];
-  zips: ArtworkZip[];
-}
+export type { Artwork, ArtworkFile, ArtworkZip } from './constants';
 
 // ─── Research & Projects (new) ───────────────────────────────────────────────
 

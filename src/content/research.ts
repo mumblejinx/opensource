@@ -4,20 +4,6 @@ const BASE = import.meta.env.BASE_URL;
 
 export const RESEARCH: ContentEntry[] = [
   {
-    id: 'modulations',
-    title: 'Modulations',
-    description:
-      'An investigation into color, music, and time. Every color is a frequency and every note is a frequency — carry a musical note up octave by octave and it becomes light. This follows that mapping across the twelve chromatic pitches, where eleven land in the visible spectrum and the twelfth, the tritone, falls just past the edge of sight. Held as an ongoing investigation, not a finished theory.',
-    descriptionJp:
-      'すべての色は周波数であり、すべての音も周波数である。ある音をオクターブごとに上げていくと、やがて光になる。',
-    image: `${BASE}research/modulations/cover.jpg`,
-    liveUrl: `${BASE}research/modulations/`,
-    downloads: [{ label: 'Full paper (PDF)', pdfFilename: 'modulations.pdf' }],
-    tags: ['color', 'music', 'perception'],
-    version: 'v4.3 · 2026',
-    license: 'Free to use. Part of Open Source.',
-  },
-  {
     id: 'open-standard',
     title: 'The Open Standard',
     description:
@@ -49,5 +35,19 @@ export const RESEARCH: ContentEntry[] = [
     license: 'Creative Commons CC BY 4.0 — free to use, including commercially, with attribution.',
     disclaimer:
       'This is researched, not tested. I gathered the best information I could find on DTG printing and tried to be careful with it, but I have not been able to verify these results on my own equipment. Your inks, garments, pretreatment, and printer will differ from whatever a given source assumed — so verify anything that costs money against your own setup, and test on scrap before a full run. Corrections are welcome.',
+  },
+  {
+    id: 'modulations',
+    title: 'Modulations',
+    description:
+      'An investigation into color, music, and time. Every color is a frequency and every note is a frequency — carry a musical note up octave by octave and it becomes light. This follows that mapping across the twelve chromatic pitches, where eleven land in the visible spectrum and the twelfth, the tritone, falls just past the edge of sight. Held as an ongoing investigation, not a finished theory.',
+    descriptionJp:
+      'すべての色は周波数であり、すべての音も周波数である。ある音をオクターブごとに上げていくと、やがて光になる。',
+    image: `${BASE}research/modulations/cover.jpg`,
+    liveUrl: `${BASE}research/modulations/`,
+    downloads: [{ label: 'Full paper (PDF)', pdfFilename: 'modulations.pdf' }],
+    tags: ['color', 'music', 'perception'],
+    version: 'v4.3 · 2026',
+    license: 'Free to use. Part of Open Source.',
   },
 ];

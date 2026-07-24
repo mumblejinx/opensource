@@ -109,9 +109,10 @@ body{
 /* ── COVER ───────────────────────────────────────────────────────── */
 .cover{
   min-height:calc(100vh - 52px); margin-top:52px;
-  display:flex; flex-direction:column; justify-content:center;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
   padding:4rem var(--gutter) 3rem; position:relative;
   border-bottom:1px solid var(--line);
+  text-align:center;
 }
 .cover__eyebrow{
   font-family:var(--mono); font-size:0.7rem; letter-spacing:0.34em;
@@ -132,9 +133,10 @@ body{
   color:var(--bone-dim); max-width:38ch; font-style:italic;
 }
 .cover__meta{
-  position:absolute; left:var(--gutter); bottom:2rem;
+  position:absolute; left:50%; bottom:2rem; transform:translateX(-50%);
   font-family:var(--mono); font-size:0.62rem; letter-spacing:0.08em;
   color:var(--bone-faint); line-height:1.9;
+  text-align:center;
 }
 .cover__meta strong{ color:var(--bone-dim); font-weight:400; }
 
@@ -147,7 +149,7 @@ main{ display:block; }
 }
 .part__head{
   display:grid; grid-template-columns:auto 1fr; gap:1.4rem; align-items:baseline;
-  margin-bottom:2.4rem; max-width:var(--measure);
+  margin:0 auto 2.4rem; max-width:var(--measure);
 }
 .part__num{
   font-family:var(--mono); font-size:0.72rem; letter-spacing:0.18em;
@@ -161,7 +163,7 @@ main{ display:block; }
 .part__title .sub{ display:block; font-size:0.62em; font-style:italic; color:var(--bone-dim); font-weight:300; margin-top:0.3rem; }
 
 /* prose column */
-.prose{ max-width:var(--measure); }
+.prose{ max-width:var(--measure); margin:0 auto; }
 .prose p{ margin:0 0 1.25rem; }
 .prose p:first-of-type::first-letter{ /* subtle drop-cap-ish emphasis only on part intro */ }
 .prose h3{
@@ -202,7 +204,7 @@ main{ display:block; }
   text-transform:uppercase; letter-spacing:0.06em; font-size:0.64rem; }
 
 /* ── SPECIMENS (interactive plates) ──────────────────────────────── */
-.specimen{ max-width:1100px; margin-top:1rem; }
+.specimen{ max-width:1100px; margin:1rem auto 0; }
 .specimen__note{
   font-family:var(--mono); font-size:0.66rem; letter-spacing:0.05em;
   color:var(--bone-faint); line-height:1.7; margin:0 0 1.6rem; max-width:70ch;
@@ -567,7 +569,7 @@ main{ display:block; }
     border-radius: 4px;
     padding: 2rem;
     max-width: 780px;
-    margin-bottom: 3rem;
+    margin: 0 auto 3rem;
     font-size: 0.97rem;
     color: #c8c8c0;
     line-height: 1.75;
@@ -1836,7 +1838,7 @@ Built on a system of eight modes, each defined by its relationship to a tetracho
 </main>
 <footer class="part" style="border-bottom:none;">
   <hr class="spectral-rule thin" style="margin-bottom:2rem;">
-  <div class="cover__meta" style="position:static;">
+  <div class="cover__meta" style="position:static; transform:none; text-align:left;">
     <strong>Modulations</strong> is part of <strong>Open Source</strong>, a free-to-use art &amp; research project by Jake Galm.<br>
     Open Source · mumblejinx.github.io/opensource &nbsp;·&nbsp; Jake Galm · JakeGalm.com<br>
     Octave-doubling method: precedent in Hans Cousto's "Cosmic Octave" (1978). This project's contribution is the chromatic-scale result, not the method.
